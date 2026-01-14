@@ -32,7 +32,7 @@ st.markdown("""
 def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None, img2=None, pie2=None):
     st.markdown(f"## {titulo}")
     
-    # Mostrar imágenes con enlaces verificados
+    # Mostrar imágenes con diseño de columnas si hay dos
     if img1 and not img2:
         st.image(img1, caption=pie1, use_container_width=True)
     if img1 and img2:
@@ -47,7 +47,9 @@ st.title("🇮🇹 Roma 2026")
 st.markdown("### Paco & Mari Trini")
 
 fecha_viaje = datetime(2026, 5, 22, 6, 40)
-dias = (fecha_viaje - datetime.now()).days
+ahora = datetime.now()
+dias = (fecha_viaje - ahora).days
+
 if dias > 0:
     st.success(f"⏳ **Faltan {dias} días** para nuestro gran viaje.")
 
@@ -66,16 +68,15 @@ with col2:
     if st.button("🚌 Ver Info", key="t_real"):
         info_t = """
         **TRASLADO AL HOTEL:**
-        
-        * **🚆 Leonardo Express:** 14€ por persona. Directo a Termini (32 min).
-        * **🚌 Autobús:** 7€ por persona.
+        * **🚆 Leonardo Express:** 14€/persona. Directo a Termini (32 min).
+        * **🚌 Autobús:** 7€/persona.
         * **🚖 Taxi:** Tarifa fija de 50€.
         """
         abrir_ventana("Transporte al Centro", info_t, 
                        img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Trenitalia_Leonardo_Express.jpg/800px-Trenitalia_Leonardo_Express.jpg", 
                        pie1="El tren Leonardo Express en Fiumicino")
 
-# 2. ALMUERZO
+# 2. ALMUERZO (CORREGIDO CON LA FOTO DE LA GALLINA BIANCA)
 col1, col2 = st.columns([0.6, 0.4])
 with col1:
     st.write("🕑 **15:30**")
@@ -85,12 +86,15 @@ with col2:
         info_c = """
         **OPCIONES CERCA DEL HOTEL:**
         
-        1. **La Gallina Bianca:** Cocina tradicional, ambiente relajado.
-        2. **Mercato Centrale:** Puestos artesanos bajo la estación.
+        1. **La Gallina Bianca:** Cocina tradicional, horno de leña y excelente menú sin gluten.
+        2. **Mercato Centrale:** Espacio gourmet con puestos de pasta, pizza y quesos artesanos.
         """
+        # Aquí he puesto la foto que sacamos de su web
         abrir_ventana("Opciones de Almuerzo", info_c, 
-                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Restaurant_interior_in_Rome.jpg/800px-Restaurant_interior_in_Rome.jpg", pie1="Interior rústico (La Gallina Bianca)",
-                       img2="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg", pie2="Mercato Centrale Termini")
+                       img1="http://googleusercontent.com/image_collection/image_retrieval/5727478812607205064", 
+                       pie1="Fachada de La Gallina Bianca",
+                       img2="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg", 
+                       pie2="Mercato Centrale (Estación Termini)")
 
 # 3. SANTA MARIA MAGGIORE
 col1, col2 = st.columns([0.6, 0.4])
@@ -101,7 +105,6 @@ with col2:
     if st.button("📸 Guía Rápida", key="sm_real"):
         info_g1 = """
         **BASÍLICA DE SANTA MARIA MAGGIORE**
-        
         * **El Techo:** Mira arriba, es el primer oro traído de América.
         * **La Leyenda:** Construida tras una nevada milagrosa en agosto.
         """
@@ -118,13 +121,12 @@ with col2:
     if st.button("📸 Guía Rápida", key="mo_real"):
         info_g2 = """
         **EL MOISÉS DE MIGUEL ÁNGEL**
-        
         * **Furia en Piedra:** Fíjate en la mirada y la tensión de sus manos.
         * **Cadenas:** Debajo del altar están las cadenas de San Pedro.
         """
         abrir_ventana("Guía: El Moisés", info_g2, 
                        img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg", 
-                       pie1="Estatua real en San Pietro in Vincoli")
+                       pie1="El imponente Moisés de Miguel Ángel")
 
 # 5. CENA MONTI
 col1, col2 = st.columns([0.6, 0.4])
@@ -135,12 +137,11 @@ with col2:
     if st.button("📍 Ver Sitio", key="ce_real"):
         info_c2 = """
         **BARRIO MONTI:**
-        
-        Es el barrio más bohemio. Calles de piedra, fachadas con hiedra y vinerías históricas como *Ai Tre Scalini*.
+        Es el corazón bohemio de Roma. Calles empedradas, hiedra en las fachadas y sitios auténticos como *Ai Tre Scalini*.
         """
         abrir_ventana("Cena en Monti", info_c2, 
                        img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg", 
-                       pie1="Fachadas típicas de Monti con hiedra")
+                       pie1="Calles de Monti por la noche")
 
 st.markdown("---")
 st.markdown("<h4 style='text-align: center; color: #555;'>Hecho con ilusión de Paco para Mari Trini</h4>", unsafe_allow_html=True)

@@ -1,92 +1,81 @@
-<style>
-    /* El contenedor del modal (oculto por defecto) */
-    .modal {
-        display: none; 
-        position: fixed; 
-        z-index: 1000; 
-        left: 0; top: 0;
-        width: 100%; height: 100%;
-        background-color: rgba(0,0,0,0.8);
-    }
+import streamlit as st
 
-    /* Contenido de la ventana */
-    .modal-content {
-        background-color: #fff;
-        margin: 5% auto;
-        padding: 20px;
-        border-radius: 15px;
-        width: 80%;
-        max-width: 600px;
-        max-height: 80vh;
-        overflow-y: auto;
-        text-align: center;
-    }
+# Usamos st.markdown con unsafe_allow_html=True para que Streamlit acepte el CSS y el JS
+st.markdown("""
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
 
-    .close-btn {
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 500px;
+            color: #333;
+            text-align: center;
+        }
 
-    .restaurante-card {
-        margin-bottom: 30px;
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 20px;
-    }
+        .close-btn {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
 
-    .foto-restaurante {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-bottom: 15px;
-    }
-</style>
+        .restaurante-card {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
 
-<section id="comida" style="text-align: center; padding: 20px;">
-    <h2>🍴 Almuerzo y Cenas</h2>
-    <p>Haz clic abajo para ver las recomendaciones de sitios en Roma.</p>
-    <button onclick="abrirModal()" style="padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 10px; background-color: #e67e22; color: white; border: none;">
-        Ver sitios recomendados
-    </button>
-</section>
+        .foto-restaurante {
+            width: 100%;
+            border-radius: 10px;
+        }
+    </style>
 
-<div id="miModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="cerrarModal()">&times;</span>
-        <h1>Restaurantes Seleccionados</h1>
+    <div style="text-align: center;">
+        <button onclick="document.getElementById('miModal').style.display='block'" 
+                style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            🍴 Ver Sitios (La Gallina Bianca)
+        </button>
+    </div>
 
-        <div class="restaurante-card">
-            <img src="http://googleusercontent.com/image_collection/image_retrieval/5727478812607205064" alt="La Gallina Bianca" class="foto-restaurante">
-            <h3>La Gallina Bianca</h3>
-            <p><strong>Ubicación:</strong> Via Antonio Rosmini, 5-12 (Termini)</p>
-            <p>Especialistas en pizza artesanal y cocina sin gluten certificada.</p>
-        </div>
-
-        <div class="restaurante-card">
-            <div style="background: #eee; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-                <p>📸 (Foto de Mercato próximamente)</p>
+    <div id="miModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="document.getElementById('miModal').style.display='none'">&times;</span>
+            <h2 style="color: #2c3e50;">Recomendaciones</h2>
+            
+            <div class="restaurante-card">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/5727478812607205064" class="foto-restaurante">
+                <h3>La Gallina Bianca</h3>
+                <p>Pizza artesanal y carnes a la brasa. ¡Tienen opciones sin gluten!</p>
+                <small>📍 Via Antonio Rosmini, 5-12</small>
             </div>
-            <h3>Mercato Centrale</h3>
-            <p>Espacio gastronómico con múltiples puestos de comida artesanal.</p>
+            
+            <div class="restaurante-card">
+                <p>📸 <em>Próximamente: Mercato Centrale</em></p>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    function abrirModal() {
-        document.getElementById("miModal").style.display = "block";
-    }
-
-    function cerrarModal() {
-        document.getElementById("miModal").style.display = "none";
-    }
-
-    // Cerrar si se hace clic fuera de la ventana blanca
-    window.onclick = function(event) {
-        let modal = document.getElementById("miModal");
-        if (event.target == modal) {
-            modal.style.display = "none";
+    <script>
+        // Cerrar si se pulsa fuera del recuadro blanco
+        window.onclick = function(event) {
+            var modal = document.getElementById('miModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
-    }
-</script>
+    </script>
+    """, unsafe_allow_html=True)

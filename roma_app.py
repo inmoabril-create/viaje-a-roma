@@ -4,11 +4,16 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026 - Paco & Trini", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS ---
+# --- ESTILOS CSS (DISEÑO Y ANIMACIONES) ---
 st.markdown("""
     <style>
+    /* Fondo color crema suave */
     .stApp { background-color: #Fdfcf0; }
+    
+    /* Títulos */
     h1, h2, h3 { color: #CE1126; font-family: 'Helvetica', sans-serif; }
+    
+    /* Encabezados de día */
     .dia-header {
         background-color: #008C45;
         color: white;
@@ -19,100 +24,183 @@ st.markdown("""
         text-align: center;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .evento {
-        background: white;
+    
+    /* Cajas de evento en la lista */
+    .evento-row {
+        background-color: white;
         padding: 15px;
         border-radius: 10px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        margin-bottom: 12px;
-        border-left: 6px solid #CE1126;
+        border-left: 5px solid #CE1126;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
-    .hora { font-weight: bold; color: #555; font-size: 1.1em; margin-right: 10px; }
     
-    /* Estilo para botones bonitos */
-    .stButton button {
-        width: 100%;
-        background-color: white;
-        border: 2px solid #008C45;
-        color: #008C45;
-        border-radius: 10px;
-        font-weight: bold;
-        transition: all 0.3s ease;
+    /* Animación de aparición suave (FADE IN) */
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
-    .stButton button:hover {
+    .contenido-modal {
+        animation: fadeIn 1.5s ease-out; /* Aquí está el truco de la lentitud */
+    }
+    
+    .descripcion {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-top: 10px;
+        font-size: 1em;
+        line-height: 1.6;
+        color: #333;
+    }
+    
+    /* Botones personalizados */
+    div.stButton > button {
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid #008C45;
+        color: #008C45;
+        font-weight: bold;
+        background-color: white;
+        transition: all 0.3s;
+    }
+    div.stButton > button:hover {
         background-color: #008C45;
         color: white;
-        transform: scale(1.02);
+        border-color: #008C45;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# --- FUNCIÓN PARA VENTANA FLOTANTE (MODAL) ---
-@st.dialog("🇮🇹 Detalles del Sitio")
-def mostrar_detalle(titulo, imagen, descripcion, precio=None):
-    st.subheader(titulo)
-    st.image(imagen, use_column_width=True)
-    st.write(descripcion)
-    if precio:
-        st.success(f"💰 Precio estimado: {precio}")
+# --- FUNCIÓN MAESTRA DE VENTANA FLOTANTE ---
+@st.dialog("🇮🇹 Guía de Viaje")
+def abrir_modal(titulo, imagen, texto_html, extra_info=None):
+    # Envolvemos todo en un div con la clase 'contenido-modal' para que aparezca suave
+    st.markdown(f"""
+        <div class="contenido-modal">
+            <h2 style='color: #CE1126; margin-top: 0;'>{titulo}</h2>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    if imagen:
+        st.image(imagen, use_column_width=True)
+    
+    st.markdown(f"""
+        <div class="contenido-modal">
+            <div class="descripcion">
+                {texto_html}
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    if extra_info:
+        st.info(extra_info)
 
 # --- PORTADA ---
 st.title("🇮🇹 Roma 2026")
-st.subheader("Dossier de Viaje: Paco y Trini")
+st.caption("Dossier Interactivo: Paco y Trini")
 
 fecha_viaje = datetime(2026, 5, 22, 6, 40)
 ahora = datetime.now()
 dias_faltan = (fecha_viaje - ahora).days
-
 if dias_faltan > 0:
-    st.info(f"⏳ **CUENTA ATRÁS:** Faltan {dias_faltan} días para volar.")
+    st.success(f"⏳ **CUENTA ATRÁS:** Faltan {dias_faltan} días para volar.")
 
 # =========================================================
-# DOMINGO 1: LLEGADA
+# DOMINGO 1
 # =========================================================
-st.markdown("<div class='dia-header'><h3>DOMINGO 1: Benvenuti a Roma</h3></div>", unsafe_allow_html=True)
+st.markdown("<div class='dia-header'><h3>DOMINGO 1: La Llegada</h3></div>", unsafe_allow_html=True)
 
-st.markdown("""<div class="evento"><span class="hora">14:00</span>🛬 <b>Llegada y Traslado</b></div>""", unsafe_allow_html=True)
-with st.expander("🚌 Opciones Transporte"):
-    st.write("**🚆 Leonardo Express:** 32 min. Directo a Termini.")
-
-# --- SECCIÓN ALMUERZO CON BOTONES Y VENTANA FLOTANTE ---
-st.markdown("""<div class="evento"><span class="hora">15:30</span>🍕 <b>Almuerzo: Elige opción</b></div>""", unsafe_allow_html=True)
-
-col1, col2 = st.columns(2)
+# EVENTO 1
+col1, col2 = st.columns([0.7, 0.3])
 with col1:
-    if st.button("🏠 La Gallina Bianca"):
-        mostrar_detalle(
-            "La Gallina Bianca",
-            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
-            "Ambiente clásico y tranquilo, ideal para descansar del viaje. Manteles de tela y buen servicio.",
-            "50€ (Pareja)"
-        )
-
+    st.markdown("**14:00 | 🛬 Llegada y Traslado**")
 with col2:
-    if st.button("🍕 Mercato Centrale"):
-        mostrar_detalle(
-            "Mercato Centrale",
-            "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=800&q=80",
-            "Ambiente vibrante y moderno bajo la estación. Puestos variados y mesas compartidas.",
-            "30€ (Pareja)"
+    if st.button("🚌 Ver Info", key="btn_transporte"):
+        abrir_modal(
+            "Transporte al Hotel",
+            None,
+            """
+            <b>Opción A (Recomendada): 🚆 Leonardo Express</b><br>
+            • Precio: 14€ (28€ total).<br>
+            • Tiempo: 32 min directo a Termini.<br>
+            • Por qué: Evitáis el tráfico de Roma que es caótico.<br><br>
+            <b>Opción B: 🚖 Taxi</b><br>
+            • Precio: 50€ (Tarifa fija).<br>
+            • Por qué: Si estáis muy cansados y queréis puerta a puerta.
+            """
         )
 
-# --- VISITAS (SIGUEN IGUAL POR AHORA) ---
-st.markdown("""<div class="evento"><span class="hora">17:30</span>⛪ <b>Basílica Sta. Maria Maggiore</b></div>""", unsafe_allow_html=True)
-with st.expander("📸 Ver Guía"):
-    st.write("El oro de América en el techo.")
+# EVENTO 2
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**15:30 | 🍕 Almuerzo: Elige**")
+with col2:
+    if st.button("🍽️ Ver Opciones", key="btn_comida_dom"):
+        abrir_modal(
+            "¿Dónde comemos hoy?",
+            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+            """
+            <b>🏠 La Gallina Bianca (Clásico)</b><br>
+            Sitio elegante con manteles. Ideal para relajarse tras el viaje.<br>
+            <i>Presupuesto: 50€</i><br><br>
+            <b>🍕 Mercato Centrale (Moderno)</b><br>
+            Jaleo, puestos variados y ambiente joven.<br>
+            <i>Presupuesto: 30€</i>
+            """
+        )
 
-st.markdown("""<div class="evento"><span class="hora">21:00</span>🍷 <b>Cena: Barrio Monti</b></div>""", unsafe_allow_html=True)
+# EVENTO 3
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**17:30 | ⛪ Sta. Maria Maggiore**")
+with col2:
+    if st.button("📸 Ver Guía", key="btn_maggiore"):
+        abrir_modal(
+            "Basílica de Santa Maria Maggiore",
+            "https://images.unsplash.com/photo-1574088924962-d696116823c1?w=800&q=80",
+            """
+            <b>✨ El Primer Oro de América</b><br>
+            Mirad al techo dorado. Ese oro fue el primero que trajo Colón desde el Nuevo Mundo. Los Reyes Católicos se lo regalaron al Papa.<br><br>
+            <b>❄️ El Milagro de la Nieve</b><br>
+            Se construyó aquí porque, según la leyenda, la Virgen hizo nevar en este punto exacto en pleno mes de agosto.
+            """
+        )
+
+# EVENTO 4
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**18:30 | ⛪ San Pietro in Vincoli**")
+with col2:
+    if st.button("📸 Ver Guía", key="btn_moises"):
+        abrir_modal(
+            "El Moisés de Miguel Ángel",
+            "https://images.unsplash.com/photo-1555626049-74e50774a387?w=800&q=80",
+            """
+            <b>🗿 Una escultura con vida</b><br>
+            Moisés no está posando, está <b>enfadado</b>. Acaba de ver a su pueblo adorando ídolos falsos. Fíjate en la vena hinchada de su brazo y la tensión de los músculos.<br><br>
+            Dicen que es tan realista que Miguel Ángel le golpeó la rodilla con un martillo gritando: <i>"¡Por qué no hablas!"</i>.
+            """
+        )
 
 # =========================================================
-# LUNES 2: VATICANO
+# LUNES 2
 # =========================================================
-st.markdown("<div class='dia-header'><h3>LUNES 2: La Grandeza del Vaticano</h3></div>", unsafe_allow_html=True)
-st.warning("⏰ Despertador: 07:00 AM")
+st.markdown("<div class='dia-header'><h3>LUNES 2: Vaticano</h3></div>", unsafe_allow_html=True)
 
-st.markdown("""<div class="evento"><span class="hora">09:00</span>🏛️ <b>Museos Vaticanos</b></div>""", unsafe_allow_html=True)
-with st.expander("📸 Ver Guía + Tickets"):
-    st.write("Ticket: 2L2NFFJ00000004GM")
-
-# (Resto del código resumido para no hacerlo eterno, si te gusta el efecto lo ponemos en todo)
+# EVENTO 5
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**09:00 | 🏛️ Museos Vaticanos**")
+with col2:
+    if st.button("🎟️ Ver Ticket", key="btn_vaticano"):
+        abrir_modal(
+            "Museos Vaticanos y Capilla Sixtina",
+            "https://images.unsplash.com/photo-1541544181961-b664d0089d53?w=800&q=80",
+            """
+            <b>🎨 La Capilla Sixtina</b><br>
+            Obra cumbre de la

@@ -4,7 +4,7 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS (DISEÑO PREMIUM MÓVIL) ---
+# --- ESTILOS CSS (DISEÑO PREMIUM) ---
 st.markdown("""
     <style>
     .stApp { background-color: #Fdfcf0; }
@@ -24,7 +24,6 @@ st.markdown("""
         color: white;
     }
     h1, h2, h3 { color: #CE1126; text-align: center; font-family: sans-serif; }
-    .texto-guia { font-size: 16px; line-height: 1.6; color: #2c3e50; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -33,7 +32,7 @@ st.markdown("""
 def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None, img2=None, pie2=None):
     st.markdown(f"## {titulo}")
     
-    # Mostrar imágenes con la función de ancho de contenedor actualizada
+    # Mostrar imágenes con enlaces verificados
     if img1 and not img2:
         st.image(img1, caption=pie1, use_container_width=True)
     if img1 and img2:
@@ -64,15 +63,17 @@ with col1:
     st.write("🕑 **14:00**")
     st.write("🛬 **Llegada y Traslado**")
 with col2:
-    if st.button("🚌 Ver Info", key="t_dom"):
+    if st.button("🚌 Ver Info", key="t_real"):
         info_t = """
         **TRASLADO AL HOTEL:**
         
         * **🚆 Leonardo Express:** 14€ por persona. Directo a Termini (32 min).
-        * **🚌 Autobús:** 7€ por persona. Tarda 1 hora o más.
+        * **🚌 Autobús:** 7€ por persona.
         * **🚖 Taxi:** Tarifa fija de 50€.
         """
-        abrir_ventana("Transporte al Centro", info_t)
+        abrir_ventana("Transporte al Centro", info_t, 
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Trenitalia_Leonardo_Express.jpg/800px-Trenitalia_Leonardo_Express.jpg", 
+                       pie1="El tren Leonardo Express en Fiumicino")
 
 # 2. ALMUERZO
 col1, col2 = st.columns([0.6, 0.4])
@@ -80,17 +81,16 @@ with col1:
     st.write("🕑 **15:30**")
     st.write("🍕 **Almuerzo: Dos opciones**")
 with col2:
-    if st.button("🍽️ Ver Sitios", key="l_dom"):
+    if st.button("🍽️ Ver Sitios", key="l_real"):
         info_c = """
         **OPCIONES CERCA DEL HOTEL:**
         
-        1. **La Gallina Bianca:** Clásico y acogedor. (50€ aprox).
-        2. **Mercato Centrale:** Moderno y variado. (30€ aprox).
+        1. **La Gallina Bianca:** Cocina tradicional, ambiente relajado.
+        2. **Mercato Centrale:** Puestos artesanos bajo la estación.
         """
-        # Imágenes de alta disponibilidad
         abrir_ventana("Opciones de Almuerzo", info_c, 
-                       img1="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg", pie1="La Gallina Bianca",
-                       img2="https://images.pexels.com/photos/1035665/pexels-photo-1035665.jpeg", pie2="Mercato Centrale")
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Restaurant_interior_in_Rome.jpg/800px-Restaurant_interior_in_Rome.jpg", pie1="Interior rústico (La Gallina Bianca)",
+                       img2="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg", pie2="Mercato Centrale Termini")
 
 # 3. SANTA MARIA MAGGIORE
 col1, col2 = st.columns([0.6, 0.4])
@@ -98,16 +98,16 @@ with col1:
     st.write("🕑 **17:30**")
     st.write("⛪ **Sta. Maria Maggiore**")
 with col2:
-    if st.button("📸 Guía Rápida", key="sm_dom"):
+    if st.button("📸 Guía Rápida", key="sm_real"):
         info_g1 = """
         **BASÍLICA DE SANTA MARIA MAGGIORE**
         
-        * **Oro de América:** El techo dorado se hizo con el primer oro traído por Colón.
-        * **Nieve en Agosto:** Según la leyenda, la Virgen señaló el lugar con una nevada.
+        * **El Techo:** Mira arriba, es el primer oro traído de América.
+        * **La Leyenda:** Construida tras una nevada milagrosa en agosto.
         """
         abrir_ventana("Guía: Santa Maria Maggiore", info_g1, 
-                       img1="https://images.pexels.com/photos/2349165/pexels-photo-2349165.jpeg", 
-                       pie1="Interior de la Basílica")
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/S_Maria_Maggiore_ceiling.jpg/800px-S_Maria_Maggiore_ceiling.jpg", 
+                       pie1="El techo dorado original")
 
 # 4. EL MOISÉS
 col1, col2 = st.columns([0.6, 0.4])
@@ -115,17 +115,16 @@ with col1:
     st.write("🕑 **18:30**")
     st.write("⛪ **San Pietro / El Moisés**")
 with col2:
-    if st.button("📸 Guía Rápida", key="mo_dom"):
+    if st.button("📸 Guía Rápida", key="mo_real"):
         info_g2 = """
         **EL MOISÉS DE MIGUEL ÁNGEL**
         
-        * **Detalle:** Fíjate en la vena del brazo y la barba.
-        * **Dato:** Los cuernos son por un error de traducción antiguo.
-        * **Cadenas:** Aquí se guardan las que ataron a San Pedro.
+        * **Furia en Piedra:** Fíjate en la mirada y la tensión de sus manos.
+        * **Cadenas:** Debajo del altar están las cadenas de San Pedro.
         """
         abrir_ventana("Guía: El Moisés", info_g2, 
-                       img1="https://images.pexels.com/photos/15942475/pexels-photo-15942475.jpeg", 
-                       pie1="Obra de Miguel Ángel")
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg", 
+                       pie1="Estatua real en San Pietro in Vincoli")
 
 # 5. CENA MONTI
 col1, col2 = st.columns([0.6, 0.4])
@@ -133,17 +132,15 @@ with col1:
     st.write("🕑 **21:00**")
     st.write("🍷 **Cena: Barrio Monti**")
 with col2:
-    if st.button("📍 Ver Sitio", key="ce_dom"):
+    if st.button("📍 Ver Sitio", key="ce_real"):
         info_c2 = """
-        **CENA EN BARRIO MONTI**
+        **BARRIO MONTI:**
         
-        * **Lugar:** Ai Tre Scalini o similar.
-        * **Ambiente:** Calles bohemias con hiedra.
-        * **Menú:** Tablas y vino. (50€ aprox).
+        Es el barrio más bohemio. Calles de piedra, fachadas con hiedra y vinerías históricas como *Ai Tre Scalini*.
         """
         abrir_ventana("Cena en Monti", info_c2, 
-                       img1="https://images.pexels.com/photos/1797161/pexels-photo-1797161.jpeg", 
-                       pie1="El encanto de Monti")
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg", 
+                       pie1="Fachadas típicas de Monti con hiedra")
 
 st.markdown("---")
 st.markdown("<h4 style='text-align: center; color: #555;'>Hecho con ilusión de Paco para Mari Trini</h4>", unsafe_allow_html=True)

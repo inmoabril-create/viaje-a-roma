@@ -1,148 +1,121 @@
 import streamlit as st
-from datetime import datetime
+import datetime
 
-# --- CONFIGURACIÓN DE PÁGINA ---
-st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
+# Configuración de la página
+st.set_page_config(page_title="Roma 2026 - Dossier de Viaje", layout="wide")
 
-# --- ESTILOS CSS (DISEÑO PREMIUM) ---
-st.markdown("""
+# --- LÓGICA DEL CONTADOR (Sidebar) ---
+st.sidebar.title("⏳ Cuenta Atrás")
+fecha_viaje = datetime.datetime(2026, 5, 20, 10, 0) # Ajusta la fecha real aquí
+ahora = datetime.datetime.now()
+diferencia = fecha_viaje - ahora
+
+if diferencia.days > 0:
+    st.sidebar.success(f"Faltan {diferencia.days} días para el gran viaje, Paco.")
+else:
+    st.sidebar.info("¡El viaje ha comenzado o ya ha pasado!")
+
+# --- TÍTULO PRINCIPAL ---
+st.title("🇮🇹 Itinerario Roma 2026")
+st.markdown("---")
+
+# --- SECCIÓN: DÍA 1 (Llegada) ---
+st.header("📍 Día 1: Primer contacto con la ciudad")
+
+col1, col2 = st.columns([1, 3])
+
+with col1:
+    st.subheader("14:00")
+with col2:
+    st.write("🏠 **Llegada y Check-in:** Dejar las maletas en el alojamiento y un pequeño descanso.")
+
+st.markdown("---")
+
+# --- SECCIÓN: 15:30 ALMUERZO (CON EL MODAL DE LAS FOTOS) ---
+col1, col2 = st.columns([1, 3])
+with col1:
+    st.subheader("15:30")
+with col2:
+    st.write("🍴 **Almuerzo: Dos opciones cerca de Termini.**")
+    
+    # HTML/CSS/JS para el Modal de Restaurantes
+    modal_html = """
     <style>
-    .stApp { background-color: #Fdfcf0; }
-    div.stButton > button {
-        width: 100%;
-        padding: 18px;
-        border-radius: 15px;
-        border: 2px solid #008C45;
-        color: #008C45;
-        font-weight: bold;
-        font-size: 18px;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    }
-    div.stButton > button:hover {
-        background-color: #008C45;
-        color: white;
-    }
-    h1, h2, h3 { color: #CE1126; text-align: center; font-family: sans-serif; }
+        .modal {
+            display: none; position: fixed; z-index: 1000; 
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fff; margin: 5% auto; padding: 20px;
+            border-radius: 15px; width: 85%; max-width: 500px;
+            color: #333; text-align: center; font-family: sans-serif;
+        }
+        .close-btn { float: right; font-size: 28px; cursor: pointer; color: #aaa; }
+        .restaurante-card { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+        .foto-restaurante { width: 100%; border-radius: 10px; margin-bottom: 10px; }
+        .btn-ver { padding: 10px 20px; background-color: #e67e22; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
     </style>
-""", unsafe_allow_html=True)
 
-# --- FUNCIÓN DE VENTANA MODAL ---
-@st.dialog("🇮🇹 DETALLES DEL VIAJE", width="large")
-def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None, img2=None, pie2=None):
-    st.markdown(f"## {titulo}")
-    
-    # Mostrar imágenes con diseño de columnas si hay dos
-    if img1 and not img2:
-        st.image(img1, caption=pie1, use_container_width=True)
-    if img1 and img2:
-        c1, c2 = st.columns(2)
-        with c1: st.image(img1, caption=pie1, use_container_width=True)
-        with c2: st.image(img2, caption=pie2, use_container_width=True)
-    
-    st.markdown(texto_markdown)
+    <button class="btn-ver" onclick="document.getElementById('modalComida').style.display='block'">
+        🔎 Ver Sitios (La Gallina Bianca)
+    </button>
 
-# --- PORTADA ---
-st.title("🇮🇹 Roma 2026")
-st.markdown("### Paco & Mari Trini")
+    <div id="modalComida" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="document.getElementById('modalComida').style.display='none'">&times;</span>
+            <h2 style="color: #2c3e50;">Recomendaciones para Hoy</h2>
+            
+            <div class="restaurante-card">
+                <img src="http://googleusercontent.com/image_collection/image_retrieval/5727478812607205064" class="foto-restaurante">
+                <h3>La Gallina Bianca</h3>
+                <p>Ubicada en Via Antonio Rosmini. Famosa por su horno de leña y opciones sin gluten.</p>
+                <small>📍 A 5 min de la estación</small>
+            </div>
+            
+            <div class="restaurante-card">
+                <h3>Mercato Centrale</h3>
+                <p>Ubicado dentro de la misma estación Termini. Muchas opciones gourmet rápidas.</p>
+                <p>📸 <em>(Pendiente de añadir foto de Mercato)</em></p>
+            </div>
+        </div>
+    </div>
 
-fecha_viaje = datetime(2026, 5, 22, 6, 40)
-ahora = datetime.now()
-dias = (fecha_viaje - ahora).days
-
-if dias > 0:
-    st.success(f"⏳ **Faltan {dias} días** para nuestro gran viaje.")
-
-# =========================================================
-# DOMINGO 1: LA LLEGADA
-# =========================================================
-st.markdown("---")
-st.markdown("### 📆 DOMINGO 1: Benvenuti")
-
-# 1. TRANSPORTE
-col1, col2 = st.columns([0.6, 0.4])
-with col1:
-    st.write("🕑 **14:00**")
-    st.write("🛬 **Llegada y Traslado**")
-with col2:
-    if st.button("🚌 Ver Info", key="t_real"):
-        info_t = """
-        **TRASLADO AL HOTEL:**
-        * **🚆 Leonardo Express:** 14€/persona. Directo a Termini (32 min).
-        * **🚌 Autobús:** 7€/persona.
-        * **🚖 Taxi:** Tarifa fija de 50€.
-        """
-        abrir_ventana("Transporte al Centro", info_t, 
-                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Trenitalia_Leonardo_Express.jpg/800px-Trenitalia_Leonardo_Express.jpg", 
-                       pie1="El tren Leonardo Express en Fiumicino")
-
-# 2. ALMUERZO (CORREGIDO CON LA FOTO DE LA GALLINA BIANCA)
-col1, col2 = st.columns([0.6, 0.4])
-with col1:
-    st.write("🕑 **15:30**")
-    st.write("🍕 **Almuerzo: Dos opciones**")
-with col2:
-    if st.button("🍽️ Ver Sitios", key="l_real"):
-        info_c = """
-        **OPCIONES CERCA DEL HOTEL:**
-        
-        1. **La Gallina Bianca:** Cocina tradicional, horno de leña y excelente menú sin gluten.
-        2. **Mercato Centrale:** Espacio gourmet con puestos de pasta, pizza y quesos artesanos.
-        """
-        # Aquí he puesto la foto que sacamos de su web
-        abrir_ventana("Opciones de Almuerzo", info_c, 
-                       img1="http://googleusercontent.com/image_collection/image_retrieval/5727478812607205064", 
-                       pie1="Fachada de La Gallina Bianca",
-                       img2="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg", 
-                       pie2="Mercato Centrale (Estación Termini)")
-
-# 3. SANTA MARIA MAGGIORE
-col1, col2 = st.columns([0.6, 0.4])
-with col1:
-    st.write("🕑 **17:30**")
-    st.write("⛪ **Sta. Maria Maggiore**")
-with col2:
-    if st.button("📸 Guía Rápida", key="sm_real"):
-        info_g1 = """
-        **BASÍLICA DE SANTA MARIA MAGGIORE**
-        * **El Techo:** Mira arriba, es el primer oro traído de América.
-        * **La Leyenda:** Construida tras una nevada milagrosa en agosto.
-        """
-        abrir_ventana("Guía: Santa Maria Maggiore", info_g1, 
-                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/S_Maria_Maggiore_ceiling.jpg/800px-S_Maria_Maggiore_ceiling.jpg", 
-                       pie1="El techo dorado original")
-
-# 4. EL MOISÉS
-col1, col2 = st.columns([0.6, 0.4])
-with col1:
-    st.write("🕑 **18:30**")
-    st.write("⛪ **San Pietro / El Moisés**")
-with col2:
-    if st.button("📸 Guía Rápida", key="mo_real"):
-        info_g2 = """
-        **EL MOISÉS DE MIGUEL ÁNGEL**
-        * **Furia en Piedra:** Fíjate en la mirada y la tensión de sus manos.
-        * **Cadenas:** Debajo del altar están las cadenas de San Pedro.
-        """
-        abrir_ventana("Guía: El Moisés", info_g2, 
-                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg", 
-                       pie1="El imponente Moisés de Miguel Ángel")
-
-# 5. CENA MONTI
-col1, col2 = st.columns([0.6, 0.4])
-with col1:
-    st.write("🕑 **21:00**")
-    st.write("🍷 **Cena: Barrio Monti**")
-with col2:
-    if st.button("📍 Ver Sitio", key="ce_real"):
-        info_c2 = """
-        **BARRIO MONTI:**
-        Es el corazón bohemio de Roma. Calles empedradas, hiedra en las fachadas y sitios auténticos como *Ai Tre Scalini*.
-        """
-        abrir_ventana("Cena en Monti", info_c2, 
-                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg", 
-                       pie1="Calles de Monti por la noche")
+    <script>
+        window.onclick = function(event) {
+            var modal = document.getElementById('modalComida');
+            if (event.target == modal) { modal.style.display = "none"; }
+        }
+    </script>
+    """
+    st.markdown(modal_html, unsafe_allow_html=True)
 
 st.markdown("---")
-st.markdown("<h4 style='text-align: center; color: #555;'>Hecho con ilusión de Paco para Mari Trini</h4>", unsafe_allow_html=True)
-st.caption("Dossier Interactivo Roma 2026")
+
+# --- SECCIÓN: 17:30 SANTA MARIA MAGGIORE ---
+col1, col2 = st.columns([1, 3])
+with col1:
+    st.subheader("17:30")
+with col2:
+    st.write("⛪ **Basílica de Santa María la Mayor:** Una de las cuatro basílicas mayores de Roma.")
+    
+    if st.button("📖 Guía Rápida: Santa Maria"):
+        st.info("""
+        **No te pierdas:**
+        * Los mosaicos del siglo V en la nave central.
+        * El relicario de la Sagrada Cuna bajo el altar mayor.
+        * El techo artesonado, que dicen fue dorado con el primer oro traído de América.
+        """)
+
+st.markdown("---")
+
+# --- SECCIÓN: 18:30 SAN PIETRO IN VINCOLI ---
+col1, col2 = st.columns([1, 3])
+with col1:
+    st.subheader("18:30")
+with col2:
+    st.write("🗿 **San Pietro in Vincoli:** Famosa por albergar el **Moisés de Miguel Ángel** y las cadenas de San Pedro.")
+
+st.markdown("---")
+
+st.caption("Dossier gestionado por Anras para Paco - Roma 2026")

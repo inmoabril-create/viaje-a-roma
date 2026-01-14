@@ -25,26 +25,14 @@ st.markdown("""
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     
-    /* Cajas de evento en la lista */
-    .evento-row {
-        background-color: white;
-        padding: 15px;
-        border-radius: 10px;
-        border-left: 5px solid #CE1126;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    
-    /* Animación de aparición suave (FADE IN) */
+    /* Animación de aparición suave (FADE IN) - 2 SEGUNDOS */
     @keyframes fadeIn {
-        0% { opacity: 0; transform: translateY(10px); }
+        0% { opacity: 0; transform: translateY(20px); }
         100% { opacity: 1; transform: translateY(0); }
     }
+    
     .contenido-modal {
-        animation: fadeIn 1.5s ease-out; /* Aquí está el truco de la lentitud */
+        animation: fadeIn 2s ease-out; /* Aquí controlamos la lentitud */
     }
     
     .descripcion {
@@ -203,4 +191,122 @@ with col2:
             "https://images.unsplash.com/photo-1541544181961-b664d0089d53?w=800&q=80",
             """
             <b>🎨 La Capilla Sixtina</b><br>
-            Obra cumbre de la
+            Obra cumbre de la humanidad. Miguel Ángel pintó el techo de pie, casi quedándose ciego. Buscad <i>La Creación de Adán</i> (los dedos tocándose).<br><br>
+            <b>💀 El Juicio Final</b><br>
+            En la pared del fondo. San Bartolomé sostiene una piel despellejada... ¡es un autorretrato macabro del propio Miguel Ángel!
+            """,
+            extra_info="CÓDIGO TICKET: 2L2NFFJ00000004GM"
+        )
+
+# EVENTO 6
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**16:30 | 🏰 Castel Sant'Angelo**")
+with col2:
+    if st.button("📸 Ver Guía", key="btn_castillo"):
+        abrir_modal(
+            "Castillo de Sant'Angelo",
+            "https://images.unsplash.com/photo-1525874684015-58379d421a52?w=800&q=80",
+            """
+            De tumba de emperador a fortaleza de los Papas. <br><br>
+            <b>🕵️ El Pasadizo Secreto</b><br>
+            Existe un corredor elevado (<i>Il Passetto</i>) que conecta el castillo con el Vaticano. Por ahí huyeron varios Papas para salvar la vida durante los asedios a Roma.
+            """
+        )
+
+# =========================================================
+# MARTES 3
+# =========================================================
+st.markdown("<div class='dia-header'><h3>MARTES 3: Barroco</h3></div>", unsafe_allow_html=True)
+
+# EVENTO 7
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**10:00 | ⛲ Fontana di Trevi**")
+with col2:
+    if st.button("📸 Ver Guía", key="btn_trevi"):
+        abrir_modal(
+            "Fontana di Trevi",
+            "https://images.unsplash.com/photo-1515542622106-78bda8ba30c3?w=800&q=80",
+            """
+            <b>🪙 La Tradición</b><br>
+            Lanzar moneda con mano derecha sobre hombro izquierdo = Volver a Roma.<br><br>
+            Es el final de un acueducto romano que lleva funcionando más de 2000 años. El agua que veis viene de manantiales puros a las afueras de la ciudad.
+            """
+        )
+
+# EVENTO 8
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**14:00 | 🍝 Almuerzo Especial**")
+with col2:
+    if st.button("❤️ Ver Sitio", key="btn_cantina"):
+        abrir_modal(
+            "Cantina e Cucina",
+            "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80",
+            """
+            <b>Nuestro sitio favorito</b><br>
+            Ambiente rústico y alegre. Tenéis que pedir:<br>
+            1. Pasta Carbonara (sin nata, solo huevo y queso).<br>
+            2. Pasta Amatriciana.<br><br>
+            Presupuesto aprox: 60€
+            """
+        )
+
+# EVENTO 9
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**16:30 | 🏛️ El Panteón**")
+with col2:
+    if st.button("📸 Ver Guía", key="btn_panteon"):
+        abrir_modal(
+            "El Panteón de Agripa",
+            "https://images.unsplash.com/photo-1506547631742-0f135272a806?w=800&q=80",
+            """
+            El edificio mejor conservado de la antigüedad (año 125 d.C).<br><br>
+            <b>☀️ El Óculo</b><br>
+            El agujero del techo es la única luz. Cuando llueve, el agua entra, pero el suelo tiene agujeritos invisibles para drenarla. Aquí está la tumba del pintor Rafael.
+            """
+        )
+
+# =========================================================
+# MIÉRCOLES 4
+# =========================================================
+st.markdown("<div class='dia-header'><h3>MIÉRCOLES 4: Arte y Coliseo</h3></div>", unsafe_allow_html=True)
+
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**12:00 | 🎨 Galería Borghese**")
+with col2:
+    if st.button("📸 Ver Guía", key="btn_borghese"):
+        abrir_modal(
+            "Galería Borghese",
+            "https://images.unsplash.com/photo-1555520978-0062f689f46b?w=800&q=80",
+            """
+            <b>Bernini: Mármol o Carne</b><br>
+            Fijaos en <i>El Rapto de Proserpina</i>. Los dedos de Plutón se hunden en el muslo de ella como si fuera carne real. Es impresionante.<br>
+            En <i>Apolo y Dafne</i>, veréis cómo los dedos de ella se transforman en ramas y hojas ante vuestros ojos.
+            """
+        )
+
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**16:00 | 🏟️ Coliseo**")
+with col2:
+    if st.button("📸 Ver Guía", key="btn_coliseo"):
+        abrir_modal(
+            "El Coliseo Romano",
+            "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
+            """
+            Tenía capacidad para 50.000 personas. Tenía un techo de lona retráctil (Velarium) para dar sombra.<br><br>
+            Bajo la arena, hay túneles y montacargas para subir leones y gladiadores por sorpresa.
+            """
+        )
+
+# =========================================================
+# JUEVES
+# =========================================================
+st.markdown("<div class='dia-header'><h3>JUEVES: Regreso</h3></div>", unsafe_allow_html=True)
+st.error("🛫 Vuelo de vuelta: 06:40 AM")
+
+col1, col2 = st.columns([0.7, 0.3

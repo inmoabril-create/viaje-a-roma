@@ -309,4 +309,18 @@ with col2:
 st.markdown("<div class='dia-header'><h3>JUEVES: Regreso</h3></div>", unsafe_allow_html=True)
 st.error("🛫 Vuelo de vuelta: 06:40 AM")
 
-col1, col2 = st.columns([0.7, 0.3
+col1, col2 = st.columns([0.7, 0.3])
+with col1:
+    st.markdown("**03:45 | 🚌 Bus al Aeropuerto**")
+with col2:
+    if st.button("📍 Ver Parada", key="btn_bus_vuelta"):
+        abrir_modal(
+            "Bus de Vuelta (TAM)",
+            None,
+            """
+            <b>Salida:</b> Via Giolitti 34 (Lado de Termini).<br>
+            <b>Hora:</b> 03:45 AM (Sed puntuales).<br>
+            <b>Precio:</b> 7€ por persona.<br><br>
+            <i>Alternativa: Pedir taxi en el hotel (50€).</i>
+            """
+        )

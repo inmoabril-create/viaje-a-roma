@@ -84,8 +84,3 @@ with tab1:
 
 st.divider()
 st.caption("Hecho por Paco para Trini.")
-
-    
-    
-
-      

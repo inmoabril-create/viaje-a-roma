@@ -141,4 +141,77 @@ with st.expander("📸 GUÍA: De Tumba a Fortaleza"):
 st.markdown("<div class='dia-header'><h3>MARTES 3: La Dolce Vita</h3></div>", unsafe_allow_html=True)
 
 # --- VISITA 5: FONTANA DI TREVI ---
-st.markdown("""<div class="evento"><span class="hora">10:00</span>⛲ <b>Fontana di Trevi y Pza. España</b>
+st.markdown("""<div class="evento"><span class="hora">10:00</span>⛲ <b>Fontana di Trevi y Pza. España</b></div>""", unsafe_allow_html=True)
+with st.expander("📸 GUÍA: El Agua de Roma"):
+    st.image("https://images.unsplash.com/photo-1515542622106-78bda8ba30c3?w=800&q=80")
+    st.markdown("""
+    <div class="descripcion">
+    La fuente barroca más famosa del mundo. No es solo decorativa: es el final del acueducto <i>Aqua Virgo</i>, que lleva trayendo agua a Roma desde el año 19 a.C.
+    <br><br>
+    🪙 <b>El Rito:</b> Moneda con la mano derecha sobre el hombro izquierdo.
+    1 moneda = Volver a Roma.
+    2 monedas = Encontrar el amor (¡vosotros ya vais servidos!).
+    <br><br>
+    Después, paseo hasta <b>Plaza de España</b> para ver la escalinata más cinematográfica de la ciudad.
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("""<div class="evento"><span class="hora">14:00</span>🍝 <b>ALMUERZO: Cantina e Cucina</b></div>""", unsafe_allow_html=True)
+
+# --- VISITA 6: PANTEÓN ---
+st.markdown("""<div class="evento"><span class="hora">16:30</span>🏛️ <b>El Panteón de Agripa</b></div>""", unsafe_allow_html=True)
+with st.expander("📸 GUÍA: La Perfección Geométrica"):
+    st.image("https://images.unsplash.com/photo-1506547631742-0f135272a806?w=800&q=80")
+    st.markdown("""
+    <div class="descripcion">
+    Es el edificio mejor conservado de la antigüedad (año 125 d.C.). Miguel Ángel dijo que era un "diseño de ángeles, no de humanos".
+    <br><br>
+    📐 <b>El Secreto:</b> Es una esfera perfecta. La altura es exactamente igual al diámetro (43,30m).
+    <br><br>
+    ☀️ <b>El Óculo:</b> El agujero del techo (9 metros de ancho) es la única fuente de luz. <b>Sí, cuando llueve, el agua entra</b>, pero el suelo tiene 22 agujeritos casi invisibles para drenarla. Aquí descansa Rafael Sanzio.
+    </div>
+    """, unsafe_allow_html=True)
+
+# =========================================================
+# MIÉRCOLES 4: ARTE Y COLISEO
+# =========================================================
+st.markdown("<div class='dia-header'><h3>MIÉRCOLES 4: Roma Imperial</h3></div>", unsafe_allow_html=True)
+
+# --- VISITA 7: BORGHESE ---
+st.markdown("""<div class="evento"><span class="hora">12:00</span>🎨 <b>Galería Borghese</b></div>""", unsafe_allow_html=True)
+with st.expander("📸 GUÍA: Mármol que parece Carne"):
+    st.image("https://images.unsplash.com/photo-1555520978-0062f689f46b?w=800&q=80")
+    st.markdown("""
+    <div class="descripcion">
+    La "Reina de las Colecciones Privadas". Aquí venimos a ver el genio de <b>Bernini</b>.
+    <br><br>
+    👀 <b>Fijaos bien:</b>
+    1. <b>Apolo y Dafne:</b> El momento exacto en que ella se convierte en árbol. Mirad sus dedos transformándose en hojas y las raíces saliendo de los pies.
+    2. <b>El Rapto de Proserpina:</b> Mirad cómo los dedos de Plutón se hunden en el muslo de ella. Parece carne blanda, pero es piedra dura. ¡Increíble!
+    3. <b>Paulina Bonaparte:</b> La hermana de Napoleón posando como Venus vencedora (obra de Canova).
+    </div>
+    """, unsafe_allow_html=True)
+
+# --- VISITA 8: COLISEO ---
+st.markdown("""<div class="evento"><span class="hora">16:00</span>🏟️ <b>Coliseo y Foros Imperiales</b></div>""", unsafe_allow_html=True)
+with st.expander("📸 GUÍA: Pan y Circo"):
+    st.image("https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80")
+    st.markdown("""
+    <div class="descripcion">
+    El símbolo eterno. Se inauguró en el año 80 d.C. con 100 días seguidos de juegos.
+    <br><br>
+    🦁 <b>La Ingeniería:</b> Bajo la arena (el suelo de madera) había un laberinto de túneles, ascensores y jaulas para subir fieras y gladiadores por sorpresa en mitad del espectáculo.
+    <br><br>
+    ☀️ <b>El Aire Acondicionado:</b> Tenía un sistema de toldos gigantes (<i>Velarium</i>) movido por marineros para dar sombra a los 50.000 espectadores.
+    <br><br>
+    A su lado, el <b>Foro Romano</b>: el centro del universo político y social de la época. Pisad las mismas piedras que Julio César.
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown("""<div class="evento"><span class="hora">21:00</span>🍝 <b>Cena Despedida: Vecchia Roma</b></div>""", unsafe_allow_html=True)
+
+# =========================================================
+# JUEVES: REGRESO
+# =========================================================
+st.markdown("<div class='dia-header'><h3>JUEVES: Arrivederci</h3></div>", unsafe_allow_html=True)
+st.error("🛫 Vuelo a las 06:40 AM")

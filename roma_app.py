@@ -1,86 +1,117 @@
 import streamlit as st
 from datetime import datetime
 
-# Configuración de la página
+# --- CONFIGURACIÓN ---
 st.set_page_config(page_title="Roma 2026 - Paco & Trini", page_icon="🇮🇹", layout="centered")
 
-# --- LÓGICA DE LA CUENTA ATRÁS ---
+# --- FECHAS ---
 fecha_viaje = datetime(2026, 5, 22, 6, 40) 
 ahora = datetime.now()
-diferencia = fecha_viaje - ahora
-dias_faltan = diferencia.days
+dias_faltan = (fecha_viaje - ahora).days
 
-# --- ESTILO PERSONALIZADO ---
-st.markdown(f"""
+# --- ESTILOS (CSS) ---
+st.markdown("""
     <style>
-    .stApp {{ background-color: #Fdfcf0; }}
-    .card {{
-        background: white;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        border-top: 5px solid #008C45;
-        margin-bottom: 20px;
-    }}
-    .cuenta-atras {{
-        background: #CE1126;
+    .stApp { background-color: #Fdfcf0; }
+    h1, h2, h3 { color: #CE1126; }
+    .dia-header {
+        background-color: #008C45;
         color: white;
         padding: 10px;
         border-radius: 10px;
-        text-align: center;
-        font-weight: bold;
-        font-size: 1.2rem;
-    }}
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .hora { font-weight: bold; color: #555; }
+    .recomendacion {
+        background-color: #e8f8f5;
+        border-left: 5px solid #008C45;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    .card {
+        background: white; padding: 15px; border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 10px;
+    }
     </style>
+""", unsafe_allow_html=True)
+
+# --- PORTADA ---
+st.title("🇮🇹 Itinerario Maestro: Roma 2026")
+if dias_faltan > 0:
+    st.info(f"🚀 **Cuenta atrás:** Faltan {dias_faltan} días para el despegue.")
+
+# ==========================================
+# DÍA 1: DOMINGO 22 (LLEGADA)
+# ==========================================
+st.markdown("<div class='dia-header'><h3>📆 DOMINGO 22: Benvenuti a Roma</h3></div>", unsafe_allow_html=True)
+
+st.markdown("#### 🛬 09:30 - Aterrizaje en Fiumicino")
+st.write("Recogida de maletas y traslado al centro.")
+
+# --- BLOQUE LOGÍSTICA TRANSPORTE ---
+with st.expander("🚌 Opciones de Transporte al Hotel (Ver comparativa)"):
+    st.markdown("""
+    | Opción | Duración | Coste (2 pax) | Comodidad |
+    | :--- | :---: | :---: | :---: |
+    | **🚆 Leonardo Express** | 32 min | 28€ | ⭐⭐⭐⭐⭐ (Directo a Termini) |
+    | **🚌 Bus (Terravision)** | 60 min+ | 12€ | ⭐⭐⭐ (Depende del tráfico) |
+    | **🚖 Taxi Oficial** | 45 min | 50€ (Fijo) | ⭐⭐⭐⭐ (Puerta a puerta) |
+    """)
+    
+    st.markdown("""
+    <div class="recomendacion">
+    <b>💡 Recomendación de Anras:</b><br>
+    Sin duda, coged el <b>Leonardo Express</b>. Aunque es un poco más caro que el bus, os ahorráis el tráfico de entrada a Roma (que es horrible) y os deja en Termini, muy cerca de vuestro hotel. Merece la pena pagar esos 16€ extra por empezar el viaje sin estrés.
+    </div>
     """, unsafe_allow_html=True)
 
-# --- CABECERA ---
-st.title("🇮🇹 Roma 2026")
-st.subheader("La aventura de Paco y Trini")
+st.markdown("---")
 
-if dias_faltan > 0:
-    st.markdown(f'<div class="cuenta-atras">🚀 ¡Solo faltan {dias_faltan} días para el gran viaje!</div>', unsafe_allow_html=True)
+st.markdown("#### 🏨 11:30 - Check-in Hotel")
+st.write("*Dejar maletas en recepción si la habitación no está lista.*")
 
-st.image("https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80")
+st.markdown("---")
 
-# --- PESTAÑAS ---
-tab1, tab2, tab3 = st.tabs(["📅 ITINERARIO", "🍝 GASTRONOMÍA", "🚇 LOGÍSTICA"])
+st.markdown("#### 🍝 14:00 - Primera Comida Romana")
+st.write("Opciones cerca del hotel para no cansarnos:")
 
-with tab1:
-    st.markdown("### 📅 ¿Dónde comemos el primer día?")
-    
-    with st.expander("DOMINGO 1: Opciones de Almuerzo", expanded=True):
-        opcion_domingo = st.radio(
-            "Selecciona un lugar para ver el ambiente:",
-            ["🏠 La Gallina Bianca (Clásico)", "🍕 Mercato Centrale (Moderno)"],
-            index=0,
-            key="comida_domingo"
-        )
-        
-        if opcion_domingo == "🏠 La Gallina Bianca (Clásico)":
-            # FOTO BUENA: Interior elegante
-            st.image("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80", 
-                     caption="Ambiente clásico y acogedor (La Gallina Bianca)")
-            st.markdown("""<div class="card">
-                <h4>La Gallina Bianca</h4>
-                <p>Estilo tradicional romano con manteles y ambiente tranquilo. Ideal para descansar y comer bien cerca del hotel.</p>
-                <p><b>💰 Precio:</b> 45€ - 55€ (Pareja)</p>
-            </div>""", unsafe_allow_html=True)
-        else:
-            # FOTO MERCADO: Gente y ambiente
-            st.image("https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=800&q=80", 
-                     caption="Mercato Centrale Termini - Ambiente vibrante")
-            st.markdown("""<div class="card" style="border-top-color: #f39c12;">
-                <h4>Mercato Centrale</h4>
-                <p>Un espacio inmenso y moderno bajo la estación. Mucha vida, puestos variados y mesas compartidas.</p>
-                <p><b>💰 Precio:</b> 25€ - 40€ (Pareja)</p>
-            </div>""", unsafe_allow_html=True)
+# --- BLOQUE COMIDA DOMINGO (EL QUE ARREGLAMOS) ---
+opcion_domingo = st.radio("Elige ambiente:", ["La Gallina Bianca (Relax)", "Mercato Centrale (Jaleo)"], horizontal=True)
 
-    with st.expander("MARTES 3: Cantina e Cucina"):
-        st.success("🍝 **NUESTRO SITIO ESPECIAL**")
-        if st.button("Ver el ambiente de Cantina e Cucina"):
-            st.image("https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80", 
-                     caption="Decoración alegre y rústica típica de Cantina e Cucina")
+if "Gallina" in opcion_domingo:
+    st.image("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80")
+    st.caption("Ambiente clásico y tranquilo.")
+else:
+    st.image("https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=800&q=80")
+    st.caption("Ambiente vibrante y variado.")
 
-st.divider()
-st.caption("Hecho por Paco para Trini.")
+# ==========================================
+# DÍA 2: LUNES 23
+# ==========================================
+st.markdown("<div class='dia-header'><h3>📆 LUNES 23: Roma Imperial (Por definir)</h3></div>", unsafe_allow_html=True)
+st.info("🚧 Paco, aquí tenemos que poner qué hacemos este día. ¿Coliseo y Foros? ¿Panteón?")
+
+# ==========================================
+# DÍA 3: MARTES 24
+# ==========================================
+st.markdown("<div class='dia-header'><h3>📆 MARTES 24: Vaticano y Trastevere</h3></div>", unsafe_allow_html=True)
+st.write("Mañana reservada para San Pedro y Museos.")
+
+st.markdown("#### 🌙 21:00 - Cena Especial")
+with st.expander("Ver nuestra reserva en Cantina e Cucina"):
+    st.image("https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80")
+    st.write("**Cantina e Cucina:** Nuestro sitio favorito. Pedid la Carbonara y la Amatriciana para compartir.")
+
+# ==========================================
+# DÍA 4: MIÉRCOLES 25
+# ==========================================
+st.markdown("<div class='dia-header'><h3>📆 MIÉRCOLES 25: (Día Libre / Compras)</h3></div>", unsafe_allow_html=True)
+st.info("🚧 Pendiente de definir.")
+
+# ==========================================
+# DÍA 5: JUEVES 26 (REGRESO)
+# ==========================================
+st.markdown("<div class='dia-header'><h3>📆 JUEVES 26: Arrivederci Roma</h3></div>", unsafe_allow_html=True)
+st.markdown("#### 🛫 18:00 - Vuelo de vuelta")
+st.write("Salida del hotel a las 14:30 aprox.")

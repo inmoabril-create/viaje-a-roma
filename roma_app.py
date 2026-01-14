@@ -4,173 +4,153 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS (DISEÑO PREMIUM) ---
+# --- ESTILOS CSS (DISEÑO LIMPIO Y MÓVIL) ---
 st.markdown("""
     <style>
+    /* Fondo crema suave */
     .stApp { background-color: #Fdfcf0; }
+    
+    /* Botones grandes y cómodos para el dedo */
     div.stButton > button {
         width: 100%;
-        padding: 16px;
-        border-radius: 12px;
+        padding: 18px;
+        border-radius: 15px;
         border: 2px solid #008C45;
         color: #008C45;
         font-weight: bold;
-        font-size: 17px;
+        font-size: 18px;
         background-color: white;
-        transition: all 0.2s;
         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
     div.stButton > button:hover {
         background-color: #008C45;
         color: white;
-        transform: scale(1.01);
     }
-    h1, h2, h3 { color: #CE1126; font-family: sans-serif; text-align: center; }
-    .texto-guia { font-size: 16px; line-height: 1.6; color: #2c3e50; }
+    
+    /* Títulos */
+    h1, h2, h3 { color: #CE1126; text-align: center; font-family: sans-serif; }
     </style>
 """, unsafe_allow_html=True)
 
-# --- FUNCIÓN DE VENTANA (MODAL) ---
-@st.dialog("🇮🇹 GUÍA DE VIAJE", width="large")
-def abrir_ventana(titulo, texto, imagen_1=None, pie_1=None, imagen_2=None, pie_2=None):
-    st.markdown(f"<h2 style='text-align: center; color: #CE1126;'>{titulo}</h2>", unsafe_allow_html=True)
+# --- FUNCIÓN DE VENTANA MODAL ---
+@st.dialog("🇮🇹 DETALLES DEL VIAJE", width="large")
+def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None, img2=None, pie2=None):
+    st.subheader(titulo)
     
-    if imagen_1 and not imagen_2:
-        st.image(imagen_1, caption=pie_1, use_column_width=True)
+    # Mostrar imágenes
+    if img1 and not img2:
+        st.image(img1, caption=pie1, use_column_width=True)
+    if img1 and img2:
+        c1, c2 = st.columns(2)
+        with c1: st.image(img1, caption=pie1, use_column_width=True)
+        with c2: st.image(img2, caption=pie2, use_column_width=True)
     
-    if imagen_1 and imagen_2:
-        colA, colB = st.columns(2)
-        with colA:
-            st.image(imagen_1, caption=pie_1, use_column_width=True)
-        with colB:
-            st.image(imagen_2, caption=pie_2, use_column_width=True)
-
-    st.markdown(f"<div class='texto-guia'>{texto}</div>", unsafe_allow_html=True)
+    # Texto limpio sin signos de programación
+    st.markdown(texto_markdown)
 
 # --- PORTADA ---
 st.title("🇮🇹 Roma 2026")
-st.markdown("<h3 style='margin-top:0;'>Paco & Trini</h3>", unsafe_allow_html=True)
+st.markdown("### Paco & Trini")
 
+# Cuenta atrás
 fecha_viaje = datetime(2026, 5, 22, 6, 40)
-dias_faltan = (fecha_viaje - datetime.now()).days
-if dias_faltan > 0:
-    st.success(f"⏳ **Faltan {dias_faltan} días** para el despegue.")
+dias = (fecha_viaje - datetime.now()).days
+if dias > 0:
+    st.success(f"⏳ **Faltan {dias} días** para nuestro gran viaje.")
 
 # =========================================================
-# DOMINGO 1: BENAVENTI
+# DOMINGO 1
 # =========================================================
-st.markdown("### 📆 DOMINGO 1: Benvenuti")
+st.markdown("---")
+st.markdown("### 📆 DOMINGO 1: La Llegada")
 
-# --- 14:00 TRANSPORTE ---
+# 1. TRANSPORTE
 col1, col2 = st.columns([0.6, 0.4])
 with col1:
-    st.write("🕑 **14:00 | Llegada**")
-    st.caption("Fiumicino")
+    st.write("🕑 **14:00**")
+    st.write("🛬 **Llegada y Traslado**")
 with col2:
-    if st.button("🚌 Transporte", key="btn_transporte"):
-        texto_t = """
-        **🚆 OPCIÓN A: Leonardo Express (RECOMENDADO)**
-        * **Precio:** 14€ (28€ total).
-        * **Tiempo:** 32 min (Directo a Termini).
+    if st.button("🚌 Ver Info", key="t1"):
+        info_t = """
+        **TRANSPORTE AL HOTEL:**
         
-        ---
-        **🚌 OPCIÓN B: Autobús**
-        * **Precio:** 7€ pax (14€ total).
-        * **Tiempo:** 60 min aprox.
-        
-        ---
-        **🚖 OPCIÓN C: Taxi Oficial**
-        * **Precio:** 50€ (Tarifa fija).
+        * **🚆 Leonardo Express:** 14€ por persona. Es directo a Termini (32 min). La mejor opción para evitar atascos.
+        * **🚌 Autobús:** 7€ por persona. Más barato, pero tarda 1 hora o más.
+        * **🚖 Taxi:** Tarifa fija de 50€. Cómodo si llevamos mucho peso.
         """
-        abrir_ventana("🚌 Cómo llegar al Hotel", texto_t)
+        abrir_ventana("Transporte", info_t)
 
-# --- 15:30 ALMUERZO ---
+# 2. ALMUERZO
 col1, col2 = st.columns([0.6, 0.4])
 with col1:
-    st.write("🕑 **15:30 | Almuerzo**")
-    st.caption("Dos opciones")
+    st.write("🕑 **15:30**")
+    st.write("🍕 **Almuerzo: Dos opciones**")
 with col2:
-    if st.button("🍽️ Ver Opciones", key="btn_comida"):
-        texto_c = """
-        **🏠 OPCIÓN 1: La Gallina Bianca**
-        Ambiente clásico, tranquilo y con manteles.
-        * **Precio:** 50€ aprox.
+    if st.button("🍽️ Ver Sitios", key="c1"):
+        info_c = """
+        **¿DÓNDE COMEMOS?**
         
-        ---
-        **🍕 OPCIÓN 2: Mercato Centrale**
-        Moderno, vibrante y con mucho jaleo.
-        * **Precio:** 30€ aprox.
+        1. **La Gallina Bianca:** Estilo clásico romano, muy tranquilo. Perfecto para el primer contacto. (Precio: 50€ aprox).
+        2. **Mercato Centrale:** Bajo la estación. Moderno, con muchos puestos y mucha vida. (Precio: 30€ aprox).
         """
-        abrir_ventana(
-            "¿Dónde comemos hoy?", 
-            texto_c,
-            imagen_1="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800",
-            pie_1="La Gallina Bianca",
-            imagen_2="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=800",
-            pie_2="Mercato Centrale"
-        )
+        abrir_ventana("Opciones de Almuerzo", info_c, 
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Santa_Maria_Maggiore_Interior_Rome.jpg/800px-Santa_Maria_Maggiore_Interior_Rome.jpg", pie1="Cerca de Sta. Maria",
+                       img2="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Mercato_Centrale_Termini.jpg/800px-Mercato_Centrale_Termini.jpg", pie2="Mercato Centrale")
 
-# --- 17:30 STA MARIA MAGGIORE ---
+# 3. SANTA MARIA MAGGIORE
 col1, col2 = st.columns([0.6, 0.4])
 with col1:
-    st.write("🕑 **17:30 | Sta. M. Maggiore**")
-    st.caption("Basílica Mayor")
+    st.write("🕑 **17:30**")
+    st.write("⛪ **Sta. Maria Maggiore**")
 with col2:
-    if st.button("📸 Ver Guía", key="btn_maggiore"):
-        texto_m = """
-        **✨ EL ORO DE AMÉRICA**
-        Mirad el techo dorado. Fue decorado con **el primer oro que Cristóbal Colón trajo de América**.
+    if st.button("📸 Ver Guía", key="g1"):
+        info_g1 = """
+        **BASÍLICA DE SANTA MARIA MAGGIORE**
         
-        **❄️ LA LEYENDA DE LA NIEVE**
-        Se construyó aquí porque la Virgen señaló el lugar haciendo caer una nevada milagrosa en agosto.
+        * **El Oro:** El techo está decorado con el primer oro traído de América por Colón.
+        * **La Nieve:** Se dice que la Virgen indicó dónde construirla haciendo nevar un 5 de agosto.
         """
-        abrir_ventana(
-            "Basílica de Sta. Maria Maggiore", 
-            texto_m, 
-            imagen_1="https://images.unsplash.com/photo-1616422201931-18e478546f6e?w=800", 
-            pie_1="Interior de la Basílica"
-        )
+        # Foto del interior dorado real (Wikimedia)
+        abrir_ventana("Guía: Santa Maria Maggiore", info_g1, 
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Santa_Maria_Maggiore_Interior_Rome.jpg/1024px-Santa_Maria_Maggiore_Interior_Rome.jpg", 
+                       pie1="Interior de la Basílica")
 
-# --- 18:30 MOISÉS ---
+# 4. EL MOISÉS
 col1, col2 = st.columns([0.6, 0.4])
 with col1:
-    st.write("🕑 **18:30 | El Moisés**")
-    st.caption("S. Pietro in Vincoli")
+    st.write("🕑 **18:30**")
+    st.write("⛪ **San Pietro / El Moisés**")
 with col2:
-    if st.button("📸 Ver Guía", key="btn_moises"):
-        texto_mo = """
-        **🗿 EL MOISÉS DE MIGUEL ÁNGEL**
-        Moisés no posa, está **enfadado**. Fíjate en la vena hinchada del brazo y la tensión de los músculos.
+    if st.button("📸 Ver Guía", key="g2"):
+        info_g2 = """
+        **EL MOISÉS DE MIGUEL ÁNGEL**
         
-        Dicen que es tan real que Miguel Ángel le tiró un martillo y le gritó: *"¡Habla!"*.
+        * **Furia Real:** Fíjate en la vena del brazo. Miguel Ángel quería que la piedra "hablara".
+        * **Las Cadenas:** En esta iglesia están las cadenas reales que ataron a San Pedro.
         """
-        abrir_ventana(
-            "El Moisés de Miguel Ángel", 
-            texto_mo, 
-            imagen_1="https://images.unsplash.com/photo-1605368307405-f938c538a7c5?w=800", 
-            pie_1="Detalle de la escultura"
-        )
+        # Foto del Moisés real (Wikimedia)
+        abrir_ventana("Guía: El Moisés", info_g2, 
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Michelangelo%27s_Moses_at_San_Pietro_in_Vincoli_01.jpg/800px-Michelangelo%27s_Moses_at_San_Pietro_in_Vincoli_01.jpg", 
+                       pie1="El Moisés en San Pietro in Vincoli")
 
-# --- 21:00 CENA ---
+# 5. CENA MONTI
 col1, col2 = st.columns([0.6, 0.4])
 with col1:
-    st.write("🕑 **21:00 | Cena**")
-    st.caption("Barrio Monti")
+    st.write("🕑 **21:00**")
+    st.write("🍷 **Cena: Barrio Monti**")
 with col2:
-    if st.button("📍 Ver Sitio", key="btn_cena"):
-        texto_ce = """
-        **RECOMENDACIÓN: AI TRE SCALINI**
-        Es una taberna histórica con la fachada cubierta de hiedra. Sitio perfecto para sentir el ambiente romano.
+    if st.button("📍 Ver Sitio", key="c2"):
+        info_c2 = """
+        **CENA EN BARRIO MONTI**
         
-        * **Qué pedir:** Tabla de embutidos y vino.
-        * **Presupuesto:** 50€ (Pareja).
+        * **Lugar:** Ai Tre Scalini.
+        * **Ambiente:** Es una vinería histórica con la fachada llena de hiedra. 
+        * **Plan:** Tablas de quesos, embutidos y buen vino italiano. (Precio: 50€ aprox).
         """
-        abrir_ventana(
-            "Cena en Ai Tre Scalini", 
-            texto_ce, 
-            imagen_1="https://images.unsplash.com/photo-1541604193435-22287d32c2c2?w=800", 
-            pie_1="Ambiente nocturno en Roma"
-        )
+        # Foto estética de calle en Monti (No cóctel)
+        abrir_ventana("Cena en Monti", info_c2, 
+                       img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg", 
+                       pie1="Las encantadoras calles de Monti")
 
 st.markdown("---")
-st.caption("Hecho con ❤️ por Paco para Trini.")
+st.caption("Hecho con ilusión para Paco y Trini.")

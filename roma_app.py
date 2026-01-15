@@ -4,7 +4,7 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS REFORZADOS ---
+# --- ESTILOS CSS REFORZADOS PARA XIAOMI/MÓVIL ---
 st.markdown("""
     <style>
     .stApp { background-color: #Fdfcf0; }
@@ -44,6 +44,7 @@ def abrir_ventana(titulo, contenido):
 st.title("🇮🇹 Roma 2026")
 st.markdown("### Paco & Mari Trini")
 
+# Fecha de inicio: 1 de febrero de 2026
 fecha_viaje = datetime(2026, 2, 1)
 dias_restantes = (fecha_viaje - datetime.now()).days
 
@@ -54,7 +55,7 @@ elif dias_restantes == 0:
 else:
     st.write("✈️ ¡Disfrutad de Roma!")
 
-# Función para organizar filas
+# Función para organizar filas del itinerario
 def fila(hora, texto, id_btn, tit_modal, info_modal):
     col_t, col_b = st.columns([0.7, 0.3])
     with col_t:
@@ -66,10 +67,10 @@ def fila(hora, texto, id_btn, tit_modal, info_modal):
 # ==========================================
 # DOMINGO 1: Llegada
 # ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Llegada y Toma de Contacto</h1></div>', unsafe_allow_html=True)
+st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Llegada</h1></div>', unsafe_allow_html=True)
 fila("14:00", "🛫 Llegada y Traslado", "d1", "Traslado", "Llegada al Aeropuerto. Traslado al hotel en la zona de Esquilino/Termini.")
-fila("16:00", "🏨 Check-in Hotel", "d2", "Alojamiento", "Dejar maletas y primer paseo por el barrio. Piazza Vittorio Emanuele II.")
-fila("20:00", "🍷 Primera Cena", "d3", "Cena", "Cena tranquila cerca del hotel para descansar.")
+fila("16:00", "🏨 Check-in Hotel", "d2", "Alojamiento", "Dejar maletas y primer paseo por Piazza Vittorio Emanuele II.")
+fila("20:00", "🍷 Primera Cena", "d3", "Cena", "Cena tranquila cerca del hotel para cargar pilas.")
 
 # ==========================================
 # LUNES 2: Vaticano
@@ -85,27 +86,27 @@ fila("20:30", "🍷 Cena Trastevere", "l5", "Cena", "Tonnarello o Da Enzo al 29.
 # MARTES 3: Roma Barroca
 # ==========================================
 st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: Roma Barroca</h1></div>', unsafe_allow_html=True)
-fila("08:30", "☕ Desayuno Hotel", "m1", "Desayuno", "1. Regoli (Pasticceria histórica). 2. Panella.")
-fila("10:00", "⛲ Trevi y España", "m2", "Guía", "Fontana di Trevi y Plaza de España. Tirad la moneda.")
-fila("14:00", "🍝 Almuerzo Cantina", "m3", "Comida", "Cantina e Cucina (Navona). Muy recomendado.")
-fila("16:30", "🏛️ Panteón y Navona", "m4", "Guía", "Panteón de Agripa y Fuente de los 4 Ríos de Bernini.")
-fila("20:30", "🍷 Cena Despedida", "m5", "Cena de Gala", "1. Trattoria Monti (Gourmet). 2. Cul de Sac (Enoteca).")
+fila("08:30", "☕ Desayuno Hotel", "m1", "Desayuno", "1. Regoli (Maritozzo). 2. Panella.")
+fila("10:00", "⛲ Trevi y España", "m2", "Guía", "Fontana di Trevi y Plaza de España. ¡Moneda lista!")
+fila("14:00", "🍝 Almuerzo Cantina", "m3", "Comida", "Cantina e Cucina (Navona).")
+fila("16:30", "🏛️ Panteón y Navona", "m4", "Guía", "Panteón de Agripa y Fuente de los 4 Ríos.")
+fila("20:30", "🍷 Cena Despedida", "m5", "Cena de Gala", "1. Trattoria Monti. 2. Cul de Sac.")
 
 # ==========================================
 # MIÉRCOLES 4: Borghese e Imperial
 # ==========================================
 st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Borghese</h1></div>', unsafe_allow_html=True)
 fila("09:00", "☕ Desayuno Esquilino", "mi1", "Desayuno", "1. Dagnino (Siciliano). 2. Gatsby Café.")
-fila("10:45", "🚌 Traslado Borghese", "mi2", "Transporte", "Taxi o Bus 910. Hay que estar allí a las 11:30 para la consigna.")
-fila("12:00", "🎨 Galería Borghese", "mi3", "Museo", "Obras de Bernini y Caravaggio. Imprescindible.")
+fila("10:45", "🚌 Traslado Borghese", "mi2", "Transporte", "Taxi o Bus 910. Estar allí a las 11:30 para consigna.")
+fila("12:00", "🎨 Galería Borghese", "mi3", "Museo", "Obras de Bernini y Caravaggio.")
 fila("16:00", "🏟️ Roma Iluminada", "mi5", "Nocturna", "Vista desde el Campidoglio y paseo por Foros Imperiales.")
-fila("21:00", "🍷 Cena Final", "mi6", "Cena", "Trattoria Vecchia Roma (Pasta Flambé en queso).")
+fila("21:00", "🍷 Cena Final", "mi6", "Cena", "Trattoria Vecchia Roma (Pasta Flambé).")
 
 # ==========================================
 # JUEVES 5: Regreso
 # ==========================================
 st.markdown('<div class="highlight-day"><h1>📆 JUEVES 5: El Regreso</h1></div>', unsafe_allow_html=True)
-fila("03:00", "⏰ Despertador", "j1", "Aviso", "Ducha rápida y revisión de maletas.")
+fila("03:00", "⏰ Despertador", "j1", "Aviso", "¡Ducha rápida y maletas!")
 fila("03:45", "🚕 Taxi Aeropuerto", "j2", "Transporte", "Taxi tarifa fija 50€ a Fiumicino (FCO). 35 min.")
 
 st.markdown("---")

@@ -4,18 +4,11 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS PARA QUE SE VEA PERFECTO EN MÓVIL ---
+# --- ESTILOS CSS PARA MÓVIL Y VISIBILIDAD ---
 st.markdown("""
     <style>
-    /* Fondo general color crema */
     .stApp { background-color: #Fdfcf0; }
-    
-    /* FORZAR COLOR DE TEXTO (Para que no desaparezca en móviles Xiaomi) */
-    .stMarkdown p, .stMarkdown span, div, label {
-        color: #1a1a1a !important;
-    }
-    
-    /* Títulos de los días (Fondo Rojo, Letra Blanca) */
+    .stMarkdown p, .stMarkdown span, div, label { color: #1a1a1a !important; }
     .highlight-day {
         background-color: #CE1126;
         padding: 12px;
@@ -24,14 +17,7 @@ st.markdown("""
         margin-top: 25px;
         margin-bottom: 20px;
     }
-    .highlight-day h1 {
-        color: white !important;
-        font-size: 20px !important;
-        margin: 0;
-        font-weight: bold;
-    }
-
-    /* Botones Ver (Verdes y grandes para pulsar fácil) */
+    .highlight-day h1 { color: white !important; font-size: 20px !important; margin: 0; font-weight: bold; }
     div.stButton > button {
         width: 100%;
         border-radius: 8px;
@@ -41,11 +27,7 @@ st.markdown("""
         font-weight: bold;
         padding: 8px;
     }
-
-    /* VENTANAS EMERGENTES (Siempre blancas con texto negro) */
-    div[role="dialog"] {
-        background-color: white !important;
-    }
+    div[role="dialog"] { background-color: white !important; }
     div[role="dialog"] h2, div[role="dialog"] h3, div[role="dialog"] p, div[role="dialog"] li, div[role="dialog"] a {
         color: #1a1a1a !important;
         text-decoration: none;
@@ -54,7 +36,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- FUNCIÓN DE VENTANA MODAL ---
-@st.dialog("🇮🇹 INFORMACIÓN DETALLADA")
+@st.dialog("🇮🇹 INFORMACIÓN")
 def abrir_ventana(titulo, contenido):
     st.markdown(f"### {titulo}")
     st.markdown(contenido)
@@ -63,18 +45,17 @@ def abrir_ventana(titulo, contenido):
 st.title("🇮🇹 Roma 2026")
 st.markdown("### Paco & Mari Trini")
 
-# Fecha de inicio: 1 de febrero
 fecha_viaje = datetime(2026, 2, 1)
 dias_restantes = (fecha_viaje - datetime.now()).days
 
 if dias_restantes > 0:
-    st.info(f"⏳ ¡Solo faltan **{dias_restantes}** días para vuestro gran viaje!")
+    st.info(f"⏳ ¡Faltan **{dias_restantes}** días para el viaje!")
 elif dias_restantes == 0:
-    st.success("🎉 ¡EL VIAJE EMPIEZA HOY! 🎉")
+    st.success("🎉 ¡EMPIEZA HOY!")
 else:
-    st.write("✈️ ¡Disfrutad de vuestra estancia en Roma!")
+    st.write("✈️ ¡Disfrutad de Roma!")
 
-# Función para organizar las filas del itinerario
+# Función para organizar filas
 def fila(hora, texto, id_btn, tit_modal, info_modal):
     col_t, col_b = st.columns([0.7, 0.3])
     with col_t:
@@ -84,63 +65,41 @@ def fila(hora, texto, id_btn, tit_modal, info_modal):
             abrir_ventana(tit_modal, info_modal)
 
 # ==========================================
-# LUNES 2 (Vaticano)
+# LUNES 2
 # ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: El Vaticano</h1></div>', unsafe_allow_html=True)
-
-fila("07:15", "🚌 Traslado Vaticano", "l1", "Transporte al Vaticano", 
-     "Tomar el **Metro A** en Termini dirección 'Battistini' y bajar en **Ottaviano**.\n\n"
-     "* **Precio**: 1,50€ (usad Tap & Go).\n"
-     "* **Tiempo**: 15 min aprox.")
-
-fila("08:00", "☕ Desayuno en Prati", "l2", "Desayuno zona Vaticano", 
-     "1. **Sciascia Caffè 1919**: Un clásico para el mejor café. [Web Oficial](https://www.sciasciacaffe1919.it)\n"
-     "2. **Latteria Giuliani**: Famoso por sus dulces tradicionales.")
-
-fila("09:00", "🏛️ Museos Vaticanos", "l3", "Visita Museos", 
-     "**Reserva**: 2L2NFFJ00000004GM.\n\n"
-     "Imprescindible: Estancias de Rafael, Galería de los Mapas y la **Capilla Sixtina**.")
-
-fila("14:30", "🏰 Castillo Sant'Angelo", "l4", "Tarde", 
-     "1. **Almuerzo**: [Pastasciutta](https://www.pastasciuttaroma.it) (Pasta fresca rápida).\n"
-     "2. **Visita**: Paseo por el puente de los ángeles y vistas desde el Castillo.")
-
-fila("20:30", "🍷 Cena en Trastevere", "l5", "Cena Trastevere", 
-     "1. **Tonnarello**: Famoso por sus huevos con pasta. [Web](https://tonnarello.it)\n"
-     "2. **Da Enzo al 29**: Auténtica cocina romana. [Web](https://www.daenzoal29.it/)")
+st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: Vaticano</h1></div>', unsafe_allow_html=True)
+fila("07:15", "🚌 Traslado Vaticano", "l1", "Transporte", "Metro A desde Termini a Ottaviano. Tap & Go (1,50€).")
+fila("08:00", "☕ Desayuno Prati", "l2", "Desayuno", "1. Sciascia Caffè 1919. 2. Latteria Giuliani.")
+fila("09:00", "🏛️ Museos Vaticanos", "l3", "Visita", "Reserva: 2L2NFFJ00000004GM.")
+fila("14:30", "🏰 Castillo Sant'Angelo", "l4", "Tarde", "Almuerzo en Pastasciutta y paseo por el Castillo.")
+fila("20:30", "🍷 Cena Trastevere", "l5", "Cena", "Tonnarello o Da Enzo al 29.")
 
 # ==========================================
-# MARTES 3 (Barroco)
+# MARTES 3
 # ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: La Roma Barroca</h1></div>', unsafe_allow_html=True)
-
-fila("08:30", "☕ Desayuno Hotel", "m1", "Desayuno Esquilino", 
-     "1. **Regoli Pasticceria**: Tenéis que probar el **Maritozzo** (bollo con nata). [TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d1102555-Reviews-Pasticceria_Regoli-Rome_Lazio.html)\n\n"
-     "2. **Panella**: Panadería artesana increíble. [Web Oficial](https://www.panellaroma.com/)")
-
-fila("10:00", "⛲ Trevi y España", "m2", "Guía Barroca", 
-     "**Fontana di Trevi**: Tirad la moneda de espaldas. Neptuno domando las aguas.\n\n"
-     "**Plaza de España**: La fuente de la Barcaccia y la gran escalinata. Recorred la Via Condotti.")
-
-fila("14:00", "🍝 Almuerzo Cantina", "m3", "Almuerzo Centro", 
-     "**Cantina e Cucina**: Muy recomendado por su ambiente y lasaña. [Web](https://cantinaecucina.it)")
-
-fila("16:30", "🏛️ Panteón y Navona", "m4", "Guía Detallada", 
-     "**El Panteón**: El edificio mejor conservado de la antigua Roma. Mirad hacia el óculo de la cúpula.\n\n"
-     "**Plaza Navona**: Disfrutad de la Fuente de los Cuatro Ríos de Bernini.")
-
-fila("20:30", "🍷 Cena Despedida", "m5", "Cena de Gala (~100€)", 
-     "Esta es vuestra gran cena de despedida:\n\n"
-     "1. **Trattoria Monti**: Gourmet, íntima y cerca del hotel. [TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d1061245-Reviews-Trattoria_Monti-Rome_Lazio.html)\n\n"
-     "2. **Cul de Sac**: Enoteca histórica con vinos espectaculares. [Web](https://www.enotecaculdesacroma.it/)")
+st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: Roma Barroca</h1></div>', unsafe_allow_html=True)
+fila("08:30", "☕ Desayuno Hotel", "m1", "Desayuno", "1. Regoli (Maritozzo). 2. Panella.")
+fila("10:00", "⛲ Trevi y España", "m2", "Guía", "Fontana di Trevi y Plaza de España.")
+fila("14:00", "🍝 Almuerzo Cantina", "m3", "Comida", "Cantina e Cucina (Navona).")
+fila("16:30", "🏛️ Panteón y Navona", "m4", "Guía", "Panteón de Agripa y Fuente de los 4 Ríos.")
+fila("20:30", "🍷 Cena Despedida", "m5", "Cena (~100€)", "1. Trattoria Monti. 2. Cul de Sac.")
 
 # ==========================================
-# MIÉRCOLES 4 (Borghese / Imperial)
+# MIÉRCOLES 4
 # ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Borghese e Imperial</h1></div>', unsafe_allow_html=True)
+st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Borghese</h1></div>', unsafe_allow_html=True)
+fila("09:00", "☕ Desayuno Esquilino", "mi1", "Desayuno", "1. Dagnino. 2. Gatsby Café.")
+fila("10:45", "🚌 Traslado Borghese", "mi2", "Transporte", "Taxi (12€) o Bus 910. Estar allí a las 11:30.")
+fila("12:00", "🎨 Galería Borghese", "mi3", "Museo", "Obras de Bernini y Caravaggio.")
+fila("16:00", "🏟️ Roma Iluminada", "mi5", "Nocturna", "Vista desde el Campidoglio y paseo hasta el Coliseo.")
+fila("21:00", "🍷 Cena Final", "mi6", "Cena", "Trattoria Vecchia Roma (Pasta Flambé).")
 
-fila("09:00", "☕ Desayuno Esquilino", "mi1", "Desayuno", 
-     "1. **Dagnino**: El mejor rincón siciliano de Roma. [Web](https://www.pasticceriadagnino.com/)\n"
-     "2. **Gatsby Café**: Un local con mucha clase en vuestro barrio. [TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d11913959-Reviews-Gatsby_Cafe-Rome_Lazio.html)")
+# ==========================================
+# JUEVES
+# ==========================================
+st.markdown('<div class="highlight-day"><h1>📆 JUEVES: Regreso</h1></div>', unsafe_allow_html=True)
+fila("03:00", "⏰ Despertador", "j1", "Aviso", "¡Ducha y maletas!")
+fila("03:45", "🚕 Taxi Aeropuerto", "j2", "Transporte", "Taxi tarifa fija 50€. Tarda 35 min.")
 
-fila("10:45", "🚌 Traslado Borghese", "mi2", "Transport
+st.markdown("---")
+st.caption("Dossier Roma 2026 - Paco & Trini")

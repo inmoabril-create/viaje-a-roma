@@ -367,7 +367,29 @@ with c2:
         """
         abrir_ventana("Galería Borghese", info_borg, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apolo_y_Dafne_%28Bernini%29.jpg/800px-Apolo_y_Dafne_%28Bernini%29.jpg")
 
-# 3. ALMUERZO ZONA COLISEO
+# 3. TRASLADO AL CENTRO (DESDE BORGHESE)
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **14:00** | 🚌 Traslado al Centro")
+with c2:
+    if st.button("🚌 Logística", key="tr_mie_centro"):
+        info_tr_centro = """
+        **OPCIONES PARA BAJAR AL COLISEO/CENTRO:**
+        
+        * **En Autobús (Más cómodo)**: 
+            - Caminad 5 min hasta la parada **S. Paolo Del Brasile**.
+            - Tomad la **Línea 160** (Dirección Montagnola).
+            - Bajad en **Piazza Venezia** o **Ara Coeli/Piazza Venezia**. Se tarda unos 15-20 min.
+        
+        * **Caminando (Paseo recomendado)**: 
+            - Son unos **25-30 minutos** (2.2 km). 
+            - Cruzaréis el parque de Villa Borghese, bajaréis por la famosa **Via Veneto** (la de la película *La Dolce Vita*) hasta llegar a la Plaza Barberini y de ahí hacia el Foro.
+        
+        * **Taxi**: Unos 10-12€ desde la puerta de la Galería.
+        """
+        abrir_ventana("Cómo bajar al centro", info_tr_centro)
+
+# 4. ALMUERZO ZONA COLISEO
 c1, c2 = st.columns([0.6, 0.4])
 with c1: 
     st.write("🕑 **14:30** | 🍝 Almuerzo (Zona Imperial)")
@@ -382,7 +404,7 @@ with c2:
         """
         abrir_ventana("Almuerzo Miércoles", info_com_mie)
 
-# 4. PASEO IMPERIAL ILUMINADO
+# 5. PASEO IMPERIAL ILUMINADO
 c1, c2 = st.columns([0.6, 0.4])
 with c1: 
     st.write("🕑 **18:00** | 🏟️ Roma Iluminada")
@@ -396,7 +418,7 @@ with c2:
         """
         abrir_ventana("Roma Imperial", info_iluminada, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Colosseum_at_night_2015.jpg/800px-Colosseum_at_night_2015.jpg")
 
-# 5. CENA DE DESPEDIDA
+# 6. CENA DE DESPEDIDA
 c1, c2 = st.columns([0.6, 0.4])
 with c1: 
     st.write("🕑 **21:00** | 🍝 Cena Final")

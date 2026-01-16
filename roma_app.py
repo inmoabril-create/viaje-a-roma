@@ -118,7 +118,24 @@ with c2:
         * 🌐 [Información Turística](https://www.turismoroma.it/it/luoghi/basilica-di-san-pietro-vincoli)
         """
         abrir_ventana("San Pietro in Vincoli", info_mo, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg")
-
+# 5. PASEO RECOMENDADO (Entre Castillo y Cena)
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **18:00** | 🚶 Paseo Campo de' Fiori")
+with c2:
+    if st.button("🗺️ Ver Ruta", key="ruta_lun"):
+        info_ruta = """
+        **EL PASEO PERFECTO AL ATARDECER:**
+        Como tenéis tiempo antes de cenar, os recomiendo este camino a pie (15-20 min):
+        
+        1. **Puente Sant'Angelo**: Cruzad el río por el puente de los ángeles.
+        2. **Via Giulia**: Caminad por esta calle histórica y señorial.
+        3. **Campo de' Fiori**: Una plaza llena de vida. Es el sitio ideal para sentarse en una terraza a ver la gente pasar y tomar un aperitivo.
+        4. **Ponte Sisto**: Cruzad este puente peatonal; al otro lado ya estaréis en las calles mágicas del Trastevere.
+        
+        💡 **Consejo de Anrras**: No tengáis prisa, disfrutad de las luces de las farolas reflejadas en el Tíber.
+        """
+        abrir_ventana("Paseo hacia Trastevere", info_ruta, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Campo_de%27_Fiori_after_the_market.jpg/800px-Campo_de%27_Fiori_after_the_market.jpg")
 # 5. CENA MONTI
 c1, c2 = st.columns([0.6, 0.4])
 with c1: st.write("🕑 **20:00** | 🍷 Cena (Barrio Monti)")
@@ -208,20 +225,37 @@ with c2:
         """
         abrir_ventana("Castel Sant'Angelo", info_cas, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Castel_Sant%27Angelo_Rome.jpg/800px-Castel_Sant%27Angelo_Rome.jpg")
 
-# 5. ATARDECER Y CENA EN TRASTEVERE
+# 5. PASEO RECOMENDADO (Entre Castillo y Cena)
 c1, c2 = st.columns([0.6, 0.4])
 with c1: 
-    st.write("🕑 **20:00** | 🍷 Trastevere")
+    st.write("🕑 **18:00** | 🚶 Paseo Campo de' Fiori")
+with c2:
+    if st.button("🗺️ Ver Ruta", key="ruta_lun"):
+        info_ruta = """
+        **EL PASEO PERFECTO AL ATARDECER:**
+        Como tenéis tiempo antes de cenar, os recomiendo este camino a pie (15-20 min):
+        
+        1. **Puente Sant'Angelo**: Cruzad el río por el puente de los ángeles.
+        2. **Via Giulia**: Caminad por esta calle histórica y señorial.
+        3. **Campo de' Fiori**: Una plaza llena de vida. Es el sitio ideal para sentarse en una terraza a ver la gente pasar y tomar un aperitivo.
+        4. **Ponte Sisto**: Cruzad este puente peatonal; al otro lado ya estaréis en las calles mágicas del Trastevere.
+        
+        💡 **Consejo de Anrras**: No tengáis prisa, disfrutad de las luces de las farolas reflejadas en el Tíber.
+        """
+        abrir_ventana("Paseo hacia Trastevere", info_ruta, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Campo_de%27_Fiori_after_the_market.jpg/800px-Campo_de%27_Fiori_after_the_market.jpg")
+
+# 6. CENA EN TRASTEVERE (Ajustada a las 20:30 para ir sin prisas)
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **20:30** | 🍷 Cena en Trastevere")
 with c2:
     if st.button("🍷 Comidas", key="com_lun_2"):
         info_tras = """
-        **EL BARRIO MÁS PINTORESCO:**
-        Al cruzar el río llegaréis al Trastevere. Es el momento de perderse por sus calles empedradas.
-        
-        1. **Tonnarello**: El más famoso. Su pasta servida en la sartén es ya un icono. Suele haber cola, pero va rápido.
+        **NOCHE EN EL BARRIO MÁS VIVO:**
+        1. **Tonnarello**: Muy famoso. Pasta en sartén de aluminio. 
         🌐 [Web Oficial](https://tonnarello.it)
         
-        2. **Da Enzo al 29**: Una trattoria auténtica y pequeña. Si queréis probar la verdadera alcachofa a la romana o una carbonara de 10, es aquí.
+        2. **Da Enzo al 29**: Auténtica joya. Probad la 'Burrata' y la 'Carbonara'.
         🌐 [Web Oficial](https://www.daenzoal29.com/)
         """
-        abrir_ventana("Noche en Trastevere", info_tras, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Trastevere_-_piazza_Sant%27Egidio.jpg/800px-Trastevere_-_piazza_Sant%27Egidio.jpg")
+        abrir_ventana("Cena Lunes", info_tras)

@@ -345,4 +345,201 @@ else:
     c1, c2 = st.columns([0.55, 0.45])
     with c1: st.markdown('<div class="activity-time">10:00 | ⛲ Ruta Barroca</div>', unsafe_allow_html=True)
     with c2:
-        if
+        if st.button("🗺️ Trevi y España", key="rut_mar"):
+            info_rut = """
+            **EL CORAZÓN DE ROMA:**
+            
+            💧 **Fontana di Trevi**:
+            - Obra barroca. Neptuno domando las aguas.
+            - **Tradición**: Tirar moneda con mano derecha sobre hombro izquierdo.
+            
+            steps **Plaza de España**:
+            - Sus 135 peldaños. Abajo está la fuente de la Barcaza de Bernini.
+            """
+            abrir_ventana("Ruta Barroca", info_rut, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Fontana_di_Trevi_Front.jpg/800px-Fontana_di_Trevi_Front.jpg")
+
+    # 3. Almuerzo Cantina
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">14:00 | 🍝 Almuerzo</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🍷 Cantina e Cucina", key="can_mar"):
+            info_can = """
+            **CANTINA E CUCINA**
+            (Via del Governo Vecchio, 87)
+            
+            * Sitio con mucho encanto. Personal muy simpático.
+            * **Pedid**: Tabla de embutidos y Pasta Amatriciana.
+            * 🌐 [Web Oficial](https://cantinaecucina.it)
+            """
+            abrir_ventana("Almuerzo Martes", info_can)
+
+    # 4. Panteón y Navona
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">16:30 | 🏛️ Panteón</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("📖 Guía y Web", key="pan_mar"):
+            info_pan = """
+            **PANTEÓN DE AGRIPA (125 d.C.)**
+            
+            * **La Cúpula**: De hormigón no armado más grande del mundo.
+            * **El Óculo**: 9 metros. Sí, entra agua cuando llueve.
+            * **Tumbas**: Aquí está Rafael y los Reyes de Italia.
+            * 🌐 [Web Turismo](https://www.pantheonroma.com/)
+            
+            **PIAZZA NAVONA**:
+            * Antigua pista de estadio. Entrad a *Sant'Agnese in Agone*.
+            """
+            abrir_ventana("Panteón y Navona", info_pan, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Pantheon_Rome_2016.jpg/800px-Pantheon_Rome_2016.jpg")
+
+    # 5. Cena Navona
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">20:30 | 🍷 Cena Navona</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🍴 Ver Opciones", key="cen_mar"):
+            info_cn = """
+            **CENA ZONA NAVONA:**
+            
+            1. **Cul de Sac**: Enoteca histórica, patés y vinos.
+            🌐 [Web Oficial](https://www.enotecaculdesacroma.it/)
+            
+            2. **Mimi e Coco**: Buen ambiente, pasta y cócteles.
+            🌐 [Web Oficial](https://mimiecoco.com)
+            """
+            abrir_ventana("Cena Martes", info_cn)
+
+
+    # ------------------------------------------
+    # MIÉRCOLES 4: ARTE E IMPERIO
+    # ------------------------------------------
+    st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Arte e Imperio</h1></div>', unsafe_allow_html=True)
+
+    # 1. Despertador y Desayuno
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">09:00 | ⏰ Desayuno</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("☕ Opciones", key="des_mie"):
+            info_des_mie = """
+            **DESAYUNO MIÉRCOLES:**
+            
+            1. **Dagnino**:
+               - Pastelería siciliana (Cannoli).
+               - 🌐 [Web Oficial](https://www.dagnino.com/)
+            
+            2. **Santi Sebastiano e Valentino**:
+               - Panadería y café de especialidad.
+               - 🌐 [Web Oficial](http://www.santisebastianoevalentino.it/)
+            """
+            abrir_ventana("Desayuno Miércoles", info_des_mie)
+
+    # 2. Borghese
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">12:00 | 🎨 Borghese</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🎫 Guía y Entrada", key="bor_mie"):
+            info_bor = """
+            **GALERÍA BORGHESE**
+            
+            * **Horario**: Estar a las **11:30**. Guardarropa obligatorio.
+            * **Bernini**: 'Apolo y Dafne' y 'El Rapto de Proserpina'. El mármol parece piel real.
+            * **Caravaggio**: Maestros de la luz y sombra.
+            
+            🌐 [Web Oficial](https://galleriaborghese.beniculturali.it/)
+            """
+            abrir_ventana("Galería Borghese", info_bor, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apolo_y_Dafne_%28Bernini%29.jpg/800px-Apolo_y_Dafne_%28Bernini%29.jpg")
+
+    # 3. Traslado al Centro
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">14:00 | 🚌 Traslado</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🚍 Al Coliseo", key="tras_mie"):
+            info_tras_mie = """
+            **CÓMO BAJAR AL CENTRO/COLISEO:**
+            
+            1. **Autobús 160**:
+               - Parada: *S. Paolo Del Brasile*.
+               - Bajad en: *Piazza Venezia*.
+            
+            2. **Andando (Recomendado)**:
+               - Paseo de 25 min bajando por la famosa **Via Veneto** (La Dolce Vita).
+            """
+            abrir_ventana("Traslado al Centro", info_tras_mie)
+
+    # 4. Almuerzo Coliseo
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">14:30 | 🍝 Almuerzo</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🍴 Ver Opciones", key="alm_mie"):
+            info_col = """
+            **ALMUERZO CERCA DEL COLISEO:**
+            
+            1. **Hostaria al Gladiatore**:
+               - Vistas al Coliseo.
+               - 🌐 [Web Oficial](https://www.ristorantegladiatore.it/)
+               
+            2. **Trattoria Luzzi** (Via di S. Giovanni in Laterano):
+               - Ruidosa, auténtica y barata. Lasaña top.
+               - 🌐 [Web Oficial](https://www.trattorialuzzi.it/)
+            """
+            abrir_ventana("Almuerzo Miércoles", info_col)
+
+    # 5. Coliseo Iluminado
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">16:00 | 🏟️ Roma Luz</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🏛️ Paseo Imperial", key="imp_mie"):
+            info_imp = """
+            **ROMA IMPERIAL AL ATARDECER**
+            
+            * **Coliseo**: El mayor anfiteatro del mundo romano. Gladiadores.
+            * **El Mirador**: Subid a la Plaza del Campidoglio y asomaos por detrás para ver el Foro Romano.
+            """
+            abrir_ventana("Paseo Imperial", info_imp, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Colosseum_at_night_2015.jpg/800px-Colosseum_at_night_2015.jpg")
+
+    # 6. Cena Despedida
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">21:00 | 🍝 Cena Final</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🍷 Ver Opciones", key="vec_mie"):
+            info_vec = """
+            **CENA DE DESPEDIDA:**
+            
+            1. **Trattoria Vecchia Roma**
+               - *Plato Estrella*: Amatriciana Flambé en rueda de queso.
+               - 📞 +39 06 446 7373
+               - 🌐 [Web Oficial](https://www.trattoriavecchiaroma.it/)
+               
+            2. **Trattoria Monti** (Via di S. Vito, 13)
+               - Cocina elegante y familiar. Cerca del hotel.
+               - 🌐 [TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d793216-Reviews-Trattoria_Monti-Rome_Lazio.html)
+            """
+            abrir_ventana("Cena de Despedida", info_vec)
+
+
+    # ------------------------------------------
+    # JUEVES 5: VUELTA A CASA
+    # ------------------------------------------
+    st.markdown('<div class="highlight-day"><h1>📆 JUEVES 5: Fin del Viaje</h1></div>', unsafe_allow_html=True)
+
+    c1, c2 = st.columns([0.55, 0.45])
+    with c1: st.markdown('<div class="activity-time">03:00 | ⏰ Arriba</div>', unsafe_allow_html=True)
+    with c2:
+        if st.button("🛫 Logística", key="jue_fin"):
+            info_fin = """
+            **OPERACIÓN RETORNO (VUELO 06:40)**
+            
+            * **03:00**: Despertador. Ducha rápida y check-out.
+            * **03:45**: Estar en la calle esperando transporte.
+            
+            **OPCIONES AL AEROPUERTO:**
+            1. **Taxi (Recomendado)**: 50€ tarifa fija. Pedidlo en recepción la tarde anterior. Salida 04:00.
+            2. **Bus TAM**: Salida 03:45 desde Via Giolitti 34 (Termini). 7€.
+            """
+            abrir_ventana("Vuelta a Casa", info_fin)
+
+    # BOTÓN FINAL
+    st.write("---")
+    st.markdown("<div style='text-align: center; margin-bottom: 20px;'>", unsafe_allow_html=True)
+    if st.button("🔙 VOLVER A PORTADA", key="btn_volver"):
+        st.session_state.viaje_iniciado = False
+        st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)

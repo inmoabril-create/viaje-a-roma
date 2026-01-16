@@ -9,7 +9,6 @@ st.markdown("""
     <style>
     .stApp { background-color: #Fdfcf0; }
     
-    /* Títulos de los días: Azul Suave / Marino */
     .highlight-day {
         background-color: #1E3A5F;
         color: white !important;
@@ -21,20 +20,17 @@ st.markdown("""
     }
     .highlight-day h1 { color: white !important; font-size: 24px !important; margin:0; }
 
-    /* Texto general más oscuro y legible */
     .stMarkdown p, .stMarkdown li, div {
         color: #1a1a1a !important;
         font-size: 18px !important;
     }
 
-    /* Enlaces Azules y Claros */
     a {
         color: #0056b3 !important;
         text-decoration: underline !important;
         font-weight: bold !important;
     }
 
-    /* Botones Estilo Premium */
     div.stButton > button {
         width: 100%;
         background-color: white !important;
@@ -47,7 +43,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --- FUNCIÓN DE VENTANA ---
 @st.dialog("🇮🇹 DETALLES")
 def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
     st.markdown(f"# {titulo}")
@@ -71,11 +66,11 @@ with c2:
     if st.button("🚌 Transporte", key="t_dom"):
         info_t = """
         **OPCIONES DE LLEGADA:**
-        * **🚆 Tren Leonardo Express**: Opción rápida. Directo a Termini (32 min). (14€).
-        * **🚌 Autobús (Terravision / TAM)**: Económico (aprox. 6-7€). Tarda unos 50-60 min.
+        * **🚆 Tren Leonardo Express**: Directo a Termini (32 min). 14€.
+        * **🚌 Autobús (Terravision / TAM)**: Unos 6-7€. Tarda 1 hora.
         * **🚖 Taxi Oficial**: Tarifa fija de **50€**.
         
-        💡 **Recomendación de Anrras**: Paco, el tren es el más fiable para evitar atascos.
+        💡 **Consejo**: El tren es lo más cómodo para evitar el tráfico de Roma.
         """
         abrir_ventana("Llegada a Roma", info_t)
 
@@ -86,11 +81,11 @@ with c2:
     if st.button("🍴 Opciones", key="l_dom"):
         info_l = """
         **OPCIONES DE ALMUERZO:**
-        1. **La Gallina Bianca**: Cocina tradicional romana. 
-        🌐 [Web traducida](https://translate.google.com/translate?sl=it&tl=es&u=http://www.lagallinabiancaroma.it)
+        1. **La Gallina Bianca**: Cocina tradicional romana muy cerca de Termini. 
+        🌐 [Web Oficial](http://www.lagallinabiancaroma.it)
         
-        2. **Mercato Centrale**: Puestos artesanos de gran calidad en la misma estación.
-        🌐 [Web traducida](https://translate.google.com/translate?sl=it&tl=es&u=https://www.mercatocentrale.it/roma/)
+        2. **Mercato Centrale**: Puestos artesanos gourmet en la misma estación.
+        🌐 [Web Oficial](https://www.mercatocentrale.it/roma/)
         """
         abrir_ventana("Almuerzo", info_l, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg", pie1="Mercato Centrale Termini")
 
@@ -116,11 +111,11 @@ with c2:
     if st.button("📖 El Moisés", key="mo_dom"):
         info_mo = """
         **EL MOISÉS DE MIGUEL ÁNGEL:**
-        Contemplad la "terribilità" en su mirada. 
+        Contemplad la potencia de su mirada y el detalle de las venas en el brazo.
         
-        * **Curiosidad**: Los cuernos son por una mala traducción de "haces de luz".
-        * **Las Cadenas**: Veréis las cadenas que sujetaron a San Pedro.
-        * 🌐 [Web Info Turismo](https://translate.google.com/translate?sl=it&tl=es&u=https://www.turismoroma.it/it/luoghi/basilica-di-san-pietro-vincoli)
+        * **Curiosidad**: Los cuernos son un error histórico de traducción.
+        * **Las Cadenas**: Se exponen las cadenas originales de San Pedro.
+        * 🌐 [Información Turística](https://www.turismoroma.it/it/luoghi/basilica-di-san-pietro-vincoli)
         """
         abrir_ventana("San Pietro in Vincoli", info_mo, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg")
 
@@ -130,10 +125,10 @@ with c1: st.write("🕑 **20:00** | 🍷 Cena (Barrio Monti)")
 with c2:
     if st.button("🍷 Comidas", key="ce_dom"):
         info_ce = """
-        🍴 **Ai Tre Scalini**: Barrio bohemio y vinería mítica. 
-        Excelente ambiente y comida tradicional.
+        🍴 **Ai Tre Scalini**: Una de las vinerías más auténticas de Roma. 
+        No aceptan reservas, así que es mejor llegar puntuales.
         
-        🌐 [Web traducida](https://translate.google.com/translate?sl=it&tl=es&u=http://www.aitrescalini.org)
+        🌐 [Web Oficial](http://www.aitrescalini.org)
         """
         abrir_ventana("Cena en Monti", info_ce, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg", pie1="Barrio Monti")
 

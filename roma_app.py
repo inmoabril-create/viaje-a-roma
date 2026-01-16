@@ -432,3 +432,63 @@ with c2:
         🌐 [Ver en TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d793216-Reviews-Trattoria_Monti-Rome_Lazio.html)
         """
         abrir_ventana("Cena de Despedida", info_cena_final)
+
+
+# ==========================================
+# JUEVES 5: Arrivederci Roma
+# ==========================================
+st.markdown('<div class="highlight-day"><h1>📆 JUEVES 5: Arrivederci Roma</h1></div>', unsafe_allow_html=True)
+
+# 1. DESPERTADOR
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **03:00** | ⏰ Despertador")
+with c2:
+    if st.button("⏰ Detalles", key="desp_jue"):
+        info_desp = """
+        **CRONOGRAMA DE MADRUGADA:**
+        * **03:00 - 03:30**: Ducha rápida, cerrar maletas y check-out del hotel.
+        * **03:45**: Estar en la puerta del hotel esperando el transporte.
+        
+        💡 **Consejo de Anrras**: Paco, dejad las maletas listas y la ropa preparada la noche anterior. ¡Cada minuto cuenta a estas horas!
+        """
+        abrir_ventana("Plan de Madrugada", info_desp)
+
+# 2. TRASLADO AL AEROPUERTO (FIUMICINO)
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **03:45** | 🛫 Traslado Aeropuerto")
+with c2:
+    if st.button("🚕 Transporte", key="tr_jue_fin"):
+        info_aero = """
+        **LOGÍSTICA HACIA FIUMICINO (FCO):**
+        
+        * **Taxi Oficial (Blanco)**: Es la opción más segura y cómoda a esta hora. 
+        * **Tarifa Fija**: El precio es de **50€** (cerrado, incluye maletas) desde el centro de Roma.
+        * **Tiempo de viaje**: Unos 30-35 minutos (a estas horas no hay nada de tráfico).
+        
+        ⚠️ **Muy Importante**: 
+        Paco, pide en la recepción del hotel el día anterior (miércoles por la tarde) que os reserven un taxi para las 03:45 exactas. También podéis usar la App **'Free Now'**.
+        """
+        abrir_ventana("Regreso a Casa", info_aero)
+
+# 3. VUELO DE REGRESO
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **06:40** | ✈️ Salida del Vuelo")
+with c2:
+    if st.button("📋 Recordatorio", key="vuelo_jue"):
+        info_vuelo = """
+        **EN EL AEROPUERTO:**
+        * **Llegada prevista**: Estaréis en la terminal sobre las **04:20**. 
+        * Tiempo de sobra para facturar (si lleváis maleta) y pasar el control de seguridad sin agobios.
+        * Un último café italiano en el aeropuerto antes de despegar.
+        
+        ¡Buen viaje de vuelta, Paco y Mari Trini! ✈️🏠
+        """
+        abrir_ventana("Últimos Pasos", info_vuelo)
+
+# --- CIERRE DE LA GUÍA ---
+st.markdown("---")
+st.markdown("<h3 style='text-align: center;'>🇮🇹 ¡BUEN VIAJE PACO Y MARI TRINI! 🇮🇹</h3>", unsafe_allow_html=True)
+st.caption("Dossier Interactivo Roma 2026 - Creado con paciencia y éxito.")

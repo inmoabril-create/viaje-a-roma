@@ -118,24 +118,10 @@ with c2:
         * 🌐 [Información Turística](https://www.turismoroma.it/it/luoghi/basilica-di-san-pietro-vincoli)
         """
         abrir_ventana("San Pietro in Vincoli", info_mo, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg")
-# 5. PASEO RECOMENDADO (Entre Castillo y Cena)
-c1, c2 = st.columns([0.6, 0.4])
-with c1: 
-    st.write("🕑 **18:00** | 🚶 Paseo Campo de' Fiori")
-with c2:
-    if st.button("🗺️ Ver Ruta", key="ruta_lun"):
-        info_ruta = """
-        **EL PASEO PERFECTO AL ATARDECER:**
-        Como tenéis tiempo antes de cenar, os recomiendo este camino a pie (15-20 min):
+
         
-        1. **Puente Sant'Angelo**: Cruzad el río por el puente de los ángeles.
-        2. **Via Giulia**: Caminad por esta calle histórica y señorial.
-        3. **Campo de' Fiori**: Una plaza llena de vida. Es el sitio ideal para sentarse en una terraza a ver la gente pasar y tomar un aperitivo.
-        4. **Ponte Sisto**: Cruzad este puente peatonal; al otro lado ya estaréis en las calles mágicas del Trastevere.
         
-        💡 **Consejo de Anrras**: No tengáis prisa, disfrutad de las luces de las farolas reflejadas en el Tíber.
-        """
-        abrir_ventana("Paseo hacia Trastevere", info_ruta, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Campo_de%27_Fiori_after_the_market.jpg/800px-Campo_de%27_Fiori_after_the_market.jpg")
+        
 # 5. CENA MONTI
 c1, c2 = st.columns([0.6, 0.4])
 with c1: st.write("🕑 **20:00** | 🍷 Cena (Barrio Monti)")
@@ -152,7 +138,6 @@ with c2:
 st.write("---")
 st.caption("Guía Roma 2026 - Paco & Trini")
 
-
 # ==========================================
 # LUNES 2: El Corazón de Roma (Vaticano y Trastevere)
 # ==========================================
@@ -166,11 +151,14 @@ with c2:
     if st.button("🚇 Logística", key="tr_lun_1"):
         info_tr = """
         **CÓMO LLEGAR DESDE EL HOTEL:**
-        * **Metro Línea A (Roja)**: Es lo más directo. Id hacia la parada 'Termini' o 'Vittorio Emanuele' y bajad en **Ottaviano**. Desde allí hay 5 min a pie.
+        * **Metro Línea A (Roja)**: Lo más directo. Bajad en la parada **Ottaviano**.
         * **Taxi**: Tardará unos 15-20 min y os costará unos 15€.
-        * **Tap & Go**: Recordad que podéis pagar el metro apoyando vuestra tarjeta bancaria directamente en el torno.
+        * **Tap & Go**: Podéis pagar el metro apoyando vuestra tarjeta bancaria directamente en el torno.
         """
         abrir_ventana("Hacia el Vaticano", info_tr)
+
+
+
 
 # 2. MUSEOS VATICANOS Y CAPILLA SIXTINA
 c1, c2 = st.columns([0.6, 0.4])

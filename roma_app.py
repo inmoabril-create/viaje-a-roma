@@ -7,193 +7,129 @@ st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centere
 # --- ESTILOS CSS REFORZADOS ---
 st.markdown("""
     <style>
-    /* Fondo crema */
     .stApp { background-color: #Fdfcf0; }
     
-    /* Títulos de los días: Verde Italiano con letra Blanca */
+    /* Títulos de los días: Azul Suave / Marino */
     .highlight-day {
-        background-color: #008C45;
+        background-color: #1E3A5F;
         color: white !important;
-        padding: 12px;
-        border-radius: 10px;
+        padding: 15px;
+        border-radius: 12px;
         text-align: center;
         margin-top: 25px;
         margin-bottom: 20px;
-        border-bottom: 4px solid #ce1126; /* Detalle en rojo abajo */
     }
-    .highlight-day h1 { color: white !important; font-size: 22px !important; margin:0; }
+    .highlight-day h1 { color: white !important; font-size: 24px !important; margin:0; }
 
-    /* Forzar texto negro en toda la app para lectura clara */
-    .stMarkdown p, .stMarkdown li, div, label {
+    /* Texto general más oscuro y legible */
+    .stMarkdown p, .stMarkdown li, div {
         color: #1a1a1a !important;
-        font-size: 17px !important;
+        font-size: 18px !important;
     }
 
-    /* Botones más grandes y verdes */
+    /* Botones Estilo Premium */
     div.stButton > button {
         width: 100%;
         background-color: white !important;
-        border: 2px solid #008C45 !important;
-        color: #008C45 !important;
+        border: 2px solid #1E3A5F !important;
+        color: #1E3A5F !important;
         font-weight: bold;
-        padding: 10px;
-        border-radius: 8px;
-    }
-
-    /* VENTANA MODAL A PANTALLA COMPLETA */
-    div[data-testid="stDialog"] div[role="dialog"] {
-        width: 100vw !important;
-        height: 100dvh !important;
-        max-width: 100vw !important;
-        max-height: 100dvh !important;
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        background-color: white !important;
+        padding: 12px;
+        border-radius: 10px;
     }
     
-    /* Enlaces Azules y Grandes */
-    a {
-        color: #0056b3 !important;
-        text-decoration: underline !important;
-        font-weight: bold !important;
-        font-size: 18px !important;
+    /* Ventanas emergentes amplias */
+    div[data-testid="stDialog"] div[role="dialog"] {
+        background-color: white !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
 # --- FUNCIÓN DE VENTANA ---
-@st.dialog("🇮🇹 INFORMACIÓN")
+@st.dialog("🇮🇹 DETALLES")
 def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
     st.markdown(f"# {titulo}")
     if img1:
         st.image(img1, caption=pie1, use_container_width=True)
-    st.markdown(texto_markdown, unsafe_allow_html=True)
+    st.markdown(texto_markdown)
 
 # --- PORTADA ---
 st.title("🇮🇹 Roma 2026")
-st.markdown("### Paco & Mari Trini")
-
-fecha_viaje = datetime(2026, 2, 1)
-dias = (fecha_viaje - datetime.now()).days
-
-if dias > 0:
-    st.info(f"⏳ ¡Faltan **{dias}** días!")
-else:
-    st.success("🎉 ¡A disfrutar!")
+st.write("### Paco & Mari Trini")
 
 # ==========================================
-# DOMINGO 1
+# DOMINGO 1: Benvenuti
 # ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Llegada</h1></div>', unsafe_allow_html=True)
+st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Benvenuti</h1></div>', unsafe_allow_html=True)
 
+# 1. TRASLADO
 c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **14:00** | 🛬 Traslado")
+with c1: st.write("🕑 **14:00** | 🛬 Traslado Aeropuerto")
 with c2:
-    if st.button("🚌 Info", key="t_dom"):
-        abrir_ventana("Transporte", "Taxi oficial (blanco): **50€ tarifa fija**. Tren Leonardo Express: **14€/pax**.")
+    if st.button("🚌 Transporte", key="t_dom"):
+        info_t = """
+        **OPCIONES DE LLEGADA:**
+        * **🚆 Tren Leonardo Express**: La opción más rápida. Sale cada 15 min y llega directo a Termini en 32 minutos. (14€).
+        * **🚌 Autobús (Terravision / TAM)**: Más económico (aprox. 6-7€). Tarda unos 50-60 min dependiendo del tráfico.
+        * **🚖 Taxi Oficial**: Tarifa fija de **50€** (todo incluido) hasta el hotel.
+        
+        💡 **Recomendación de Anrras**: Paco, para no complicaros el primer día, el **Tren Leonardo Express** es imbatible por puntualidad y comodidad.
+        """
+        abrir_ventana("Llegada a Roma", info_t)
 
+# 2. ALMUERZO
 c1, c2 = st.columns([0.6, 0.4])
 with c1: st.write("🕑 **15:30** | 🍕 Almuerzo")
 with c2:
     if st.button("🍴 Opciones", key="l_dom"):
-        abrir_ventana("Comida", """
-        1. **La Gallina Bianca**: Tradicional. 
-        🌐 [Web Oficial](http://www.lagallinabiancaroma.it)
-        2. **Mercato Centrale**: Muchos puestos en Termini. 
-        🌐 [Web Oficial](https://www.mercatocentrale.it/roma/)
-        """)
+        abrir_ventana("Dónde comer", "1. **La Gallina Bianca**: Muy cerca de Termini, excelente pasta y trato familiar.\n2. **Mercato Centrale**: Ideal para probar distintos bocados artesanales italianos en un ambiente moderno.")
 
+# 3. SANTA MARIA MAGGIORE
 c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **17:30** | ⛪ Basílicas")
+with c1: st.write("🕑 **17:30** | ⛪ Sta. Maria Maggiore")
 with c2:
-    if st.button("📖 Ver", key="sm_dom"):
-        abrir_ventana("Basílicas", "Santa Maria Maggiore (Mosaicos) y San Pietro in Vincoli (Moisés de Miguel Ángel).")
+    if st.button("📖 Ver Guía", key="sm_dom"):
+        info_sm = """
+        **UNA JOYA IMPRESCINDIBLE:**
+        Esta es una de las cuatro basílicas mayores de Roma y la más importante dedicada a la Virgen.
+        
+        * **El Techo**: Se dice que fue dorado con el primer oro que llegó de América.
+        * **Los Mosaicos**: Son del siglo V, de un valor incalculable.
+        * **Reliquia**: Bajo el altar mayor se encuentra el "Sagrado Cuna", restos de madera que se dice pertenecen al pesebre de Jesús.
+        * **Suelo Cosmatesco**: Fijaos en los dibujos del suelo, son de mármoles de colores del medievo.
+        """
+        abrir_ventana("Santa Maria Maggiore", info_sm, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Basilica_di_Santa_Maria_Maggiore_-_Rome.jpg/800px-Basilica_di_Santa_Maria_Maggiore_-_Rome.jpg")
 
-# ==========================================
-# LUNES 2
-# ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: Vaticano</h1></div>', unsafe_allow_html=True)
-
+# 4. SAN PIETRO IN VINCOLI
 c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **09:00** | 🏛️ Museos Vaticanos")
+with c1: st.write("🕑 **18:30** | ⛪ S. Pietro in Vincoli")
 with c2:
-    if st.button("🎟️ Reserva", key="guia_lun_1"):
-        abrir_ventana("Vaticano", """
-        **Entrada a las 09:00**. Código: `2L2NFFJ00000004GM`.
-        No olvidar: Capilla Sixtina y Estancias de Rafael.
-        🌐 [Web Museos](https://www.museivaticani.va)
-        """)
+    if st.button("📖 El Moisés", key="mo_dom"):
+        info_mo = """
+        **EL MOISÉS DE MIGUEL ÁNGEL:**
+        En esta iglesia, aparentemente sencilla por fuera, se esconde una de las esculturas más famosas del mundo.
+        
+        * **La Mirada**: Miguel Ángel dotó al Moisés de una mirada tan real (la "terribilità") que parece que va a levantarse y hablar en cualquier momento.
+        * **Los Cuernos**: Tiene dos pequeños cuernos en la cabeza por una mala traducción bíblica de la época (confundieron "rayos de luz" con "cuernos").
+        * **Las Cadenas**: La iglesia también guarda las cadenas con las que San Pedro fue encarcelado en Jerusalén y Roma.
+        """
+        abrir_ventana("San Pietro in Vincoli", info_mo, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg")
 
+# 5. CENA MONTI
 c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **14:30** | 🍝 Almuerzo Prati")
+with c1: st.write("🕑 **20:00** | 🍷 Cena (Barrio Monti)")
 with c2:
-    if st.button("🍕 Sitios", key="com_lun_1"):
-        abrir_ventana("Comida", "1. **Pastasciutta** (Rápido) [Web](https://www.pastasciuttaroma.it) \n2. **Isola della Pizza** [Web](https://www.lisoladellapizza.com)")
+    if st.button("🍷 Comidas", key="ce_dom"):
+        info_ce = """
+        🍴 **Ai Tre Scalini** (Aprox. 50€). 
+        Es una vinería mítica del barrio de Monti. El ambiente es bohemio, con hiedra en la fachada y una luz muy acogedora.
+        
+        * **Especialidad**: Probad sus embutidos, sus quesos y, por supuesto, la lasaña o la berenjena a la parmesana.
+        * **Ubicación**: Está en Via Panisperna, una de las calles más bonitas de Roma.
+        
+        🌐 [Ver sitio web](http://www.aitrescalini.org)
+        """
+        abrir_ventana("Cena en Monti", info_ce, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg", pie1="Calle Via Panisperna")
 
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **20:30** | 🍷 Cena Trastevere")
-with c2:
-    if st.button("🍷 Ver", key="com_lun_2"):
-        abrir_ventana("Cena", "1. **Tonnarello** [Web](https://tonnarello.it) \n2. **Da Enzo al 29** [Web](https://www.daenzoal29.com/)")
-
-# ==========================================
-# MARTES 3
-# ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: Barroco</h1></div>', unsafe_allow_html=True)
-
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **10:00** | ⛲ Trevi / España")
-with c2:
-    if st.button("📖 Ruta", key="guia_mar_1"):
-        abrir_ventana("Ruta Barroca", "Fontana di Trevi y Plaza de España. ¡No olvides tirar la moneda!")
-
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **14:00** | 🍝 Almuerzo")
-with c2:
-    if st.button("🍝 Reserva", key="com_mar_1"):
-        abrir_ventana("Cantina e Cucina", "Imprescindible sus albóndigas. \n🌐 [Web Oficial](https://cantinaecucina.it)")
-
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **20:30** | 🍷 Cena Gala")
-with c2:
-    if st.button("🍷 Sitios", key="com_mar_2"):
-        abrir_ventana("Cena", "1. **Cul de Sac** (Enoteca) [Web](https://www.enotecaculdesacroma.it/) \n2. **Mimi e Coco** [Web](https://mimiecoco.com)")
-
-# ==========================================
-# MIÉRCOLES 4
-# ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Borghese</h1></div>', unsafe_allow_html=True)
-
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **12:00** | 🎨 Galería Borghese")
-with c2:
-    if st.button("🎨 Info", key="guia_mie_1"):
-        abrir_ventana("Borghese", "Estar a las 11:30. 'Apolo y Dafne' es lo mejor. \n🌐 [Web Oficial](https://galleriaborghese.beniculturali.it/)")
-
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **16:00** | 🏟️ Coliseo Noche")
-with c2:
-    if st.button("🏛️ Guía", key="guia_mie_2"):
-        abrir_ventana("Roma Iluminada", "Vistas desde el Campidoglio al Foro Romano iluminado.")
-
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **21:00** | 🍝 Cena Final")
-with c2:
-    if st.button("🍷 Ver", key="com_mie_2"):
-        abrir_ventana("Última Cena", "1. **Vecchia Roma** (Amatriciana Flambé) [Web](https://www.trattoriavecchiaroma.it/) \n2. **Trattoria Monti** [Web](https://www.tripadvisor.es/Restaurant_Review-g187791-d793216-Reviews-Trattoria_Monti-Rome_Lazio.html)")
-
-# ==========================================
-# JUEVES
-# ==========================================
-st.markdown('<div class="highlight-day"><h1>📆 JUEVES: Regreso</h1></div>', unsafe_allow_html=True)
-c1, c2 = st.columns([0.6, 0.4])
-with c1: st.write("🕑 **03:45** | 🛫 Taxi Aeropuerto")
-with c2:
-    if st.button("🚕 Taxi", key="tr_jue"):
-        abrir_ventana("Regreso", "Taxi oficial: 50€. Pedir en recepción el día anterior o por Free Now.")
-
-st.markdown("---")
-st.caption("Dossier Roma 2026 - Paco & Trini")
+st.write("---")
+st.caption("Guía Roma 2026 - Paco & Trini")

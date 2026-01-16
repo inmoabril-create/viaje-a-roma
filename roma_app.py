@@ -263,7 +263,7 @@ with c2:
         info_log_mar = """
         **DESAYUNO EN ESQUILINO:**
         * **Pasticceria Regoli**: Paco, el *Maritozzo* aquí es sagrado. 
-        🌐 [Ver en TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d1102555-Reviews-Pasticceria_Regoli-Rome_Lazio.html)
+        🌐 [Ver en TripAdvisor](https://www.tripadvisor.it/Restaurant_Review-g187791-d1840734-Reviews-Pasticceria_Regoli-Rome_Lazio.html)
         * **Panella**: Panadería artesana de lujo con terraza.
         🌐 [Web Oficial](https://www.panellaroma.com/)
         

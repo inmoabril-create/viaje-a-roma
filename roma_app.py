@@ -4,7 +4,7 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS (Tu copia buena + retoque para el botón de inicio) ---
+# --- ESTILOS CSS REFORZADOS ---
 st.markdown("""
     <style>
     .stApp { background-color: #Fdfcf0; }
@@ -31,7 +31,6 @@ st.markdown("""
         font-weight: bold !important;
     }
 
-    /* Estilo para los botones normales */
     div.stButton > button {
         width: 100%;
         background-color: white !important;
@@ -42,7 +41,7 @@ st.markdown("""
         border-radius: 10px;
     }
 
-    /* Estilo resaltado para el botón INICIAR VIAJE */
+    /* Estilo para el botón INICIAR VIAJE */
     .btn-inicio button {
         background-color: #008C45 !important;
         color: white !important;
@@ -57,7 +56,7 @@ st.markdown("""
 # --- FUNCIÓN DE VENTANA ---
 @st.dialog("🇮🇹 DETALLES")
 def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
-    st.markdown(f"# {titulo}")
+    st.markdown(f"## {titulo}")
     if img1:
         st.image(img1, caption=pie1, use_container_width=True)
     st.markdown(texto_markdown)
@@ -66,7 +65,7 @@ def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
 if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
-# --- PANTALLA DE BIENVENIDA ---
+# --- 1. PANTALLA DE BIENVENIDA ---
 if not st.session_state.viaje_iniciado:
     st.markdown(f"""
         <div style="text-align: center; padding: 40px 25px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 20px; max-width: 650px; margin-left: auto; margin-right: auto;">
@@ -88,7 +87,6 @@ if not st.session_state.viaje_iniciado:
     """, unsafe_allow_html=True)
     
     st.write("") 
-    # Usamos un contenedor especial para el botón
     _, col_btn, _ = st.columns([0.5, 1, 0.5])
     with col_btn:
         st.markdown('<div class="btn-inicio">', unsafe_allow_html=True)
@@ -97,38 +95,46 @@ if not st.session_state.viaje_iniciado:
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
-# --- CONTENIDO DEL VIAJE (Tu copia buena íntegra) ---
+# --- 2. CONTENIDO DEL VIAJE (RECUPERANDO TU COPIA BUENA) ---
 else:
     # --- DOMINGO ---
     st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Benvenuti</h1></div>', unsafe_allow_html=True)
     
+    # 1. TRASLADO
     c1, c2 = st.columns([0.6, 0.4])
     with c1: st.write("🕑 **14:00** | 🛬 Traslado Aeropuerto")
     with c2:
         if st.button("🚌 Transporte", key="t_dom"):
-            info_t = "**OPCIONES DE LLEGADA:**\n* **🚆 Tren Leonardo Express**: 14€.\n* **🚌 Autobús**: 6-7€.\n* **🚖 Taxi**: 50€."
+            info_t = """**OPCIONES DE LLEGADA:**\n* **🚆 Tren Leonardo Express**: Directo a Termini (32 min). 14€.\n* **🚌 Autobús (Terravision / TAM)**: Unos 6-7€. Tarda 1 hora.\n* **🚖 Taxi Oficial**: Tarifa fija de **50€**.\n\n💡 **Consejo**: El tren es lo más cómodo para evitar el tráfico."""
             abrir_ventana("Llegada a Roma", info_t)
 
+    # 2. ALMUERZO
+    c1, c2 = st.columns([0.6, 0.4])
+    with c1: st.write("🕑 **15:30** | 🍕 Almuerzo")
+    with c2:
+        if st.button("🍴 Opciones", key="l_dom"):
+            info_l = """**OPCIONES DE ALMUERZO:**\n1. **La Gallina Bianca**: Cocina tradicional romana.\n🌐 [Web Oficial](http://www.lagallinabiancaroma.it)\n2. **Mercato Centrale**: Puestos artesanos gourmet.\n🌐 [Web Oficial](https://www.mercatocentrale.it/roma/)"""
+            abrir_ventana("Almuerzo", info_l, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg", pie1="Mercato Centrale Termini")
+
+    # 3. SANTA MARIA MAGGIORE
+    c1, c2 = st.columns([0.6, 0.4])
+    with c1: st.write("🕑 **17:30** | ⛪ Sta. Maria Maggiore")
+    with c2:
+        if st.button("📖 Ver Guía", key="sm_dom"):
+            info_sm = """**LA BASÍLICA DE ORO:**\nEs la más grande de las iglesias dedicadas a la Virgen en Roma.\n* **El Techo**: Decorado con el primer oro traído de América.\n* **Reliquia**: El Pesebre de Belén se guarda bajo el altar.\n* 🌐 [Web Oficial](https://www.vatican.va/various/basiliche/sm_maggiore/index_it.html)"""
+            abrir_ventana("Santa Maria Maggiore", info_sm, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Basilica_di_Santa_Maria_Maggiore_-_Rome.jpg/800px-Basilica_di_Santa_Maria_Maggiore_-_Rome.jpg")
+
+    # 4. SAN PIETRO IN VINCOLI
+    c1, c2 = st.columns([0.6, 0.4])
+    with c1: st.write("🕑 **18:30** | ⛪ S. Pietro in Vincoli")
+    with c2:
+        if st.button("📖 El Moisés", key="mo_dom"):
+            info_mo = """**EL MOISÉS DE MIGUEL ÁNGEL:**\nContemplad la potencia de su mirada y el detalle de las venas en el brazo.\n* **Curiosidad**: Los cuernos son un error histórico de traducción.\n* **Las Cadenas**: Se exponen las cadenas originales de San Pedro.\n* 🌐 [Información Turística](https://www.turismoroma.it/it/luoghi/basilica-di-san-pietro-vincoli)"""
+            abrir_ventana("San Pietro in Vincoli", info_mo, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg")
+
+    # 5. CENA MONTI
     c1, c2 = st.columns([0.6, 0.4])
     with c1: st.write("🕑 **20:00** | 🍷 Cena (Barrio Monti)")
     with c2:
         if st.button("🍷 Comidas", key="ce_dom"):
-            info_ce = "🍴 **Ai Tre Scalini**. Vinería mítica de Monti.\n🌐 [Sitio Web](http://www.aitrescalini.org)"
-            abrir_ventana("Cena en Monti", info_ce, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg")
-
-    # --- LUNES ---
-    st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: El Corazón de Roma</h1></div>', unsafe_allow_html=True)
-    c1, c2 = st.columns([0.6, 0.4])
-    with c1: st.write("🕑 **09:00** | 🏛️ Museos Vaticanos")
-    with c2:
-        if st.button("📖 Ver Guía", key="guia_lun_1"):
-            info_vat = "Reserva: `2L2NFFJ00000004GM`. No os perdáis la Capilla Sixtina."
-            abrir_ventana("Vaticano", info_vat, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Sistine_Chapel_Ceiling_01.jpg/800px-Sistine_Chapel_Ceiling_01.jpg")
-
-    # (Aquí puedes seguir pegando el resto de tus días de la copia buena manteniendo esta misma estructura)
-
-    # BOTÓN PARA VOLVER
-    st.write("---")
-    if st.button("🔙 VOLVER A LA PORTADA", key="back_home"):
-        st.session_state.viaje_iniciado = False
-        st.rerun()
+            info_ce = """🍴 **Ai Tre Scalini**: Una de las vinerías más auténticas de Roma.\n🌐 [Web Oficial

@@ -330,3 +330,62 @@ with c2:
         🌐 [Web Oficial](https://mimiecoco.com)
         """
         abrir_ventana("Cena Martes", info_cena_mar)
+
+
+# ==========================================
+# MIÉRCOLES 4: Borghese y Roma Imperial
+# ==========================================
+st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Arte e Imperio</h1></div>', unsafe_allow_html=True)
+
+# 1. DESAYUNO CERCA DEL HOTEL
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **09:00** | ☕ Desayuno (Esquilino)")
+with c2:
+    if st.button("☕ Sitios", key="des_mie"):
+        info_des_mie = """
+        **DESAYUNO SICILIANO O MODERNO:**
+        1. **Dagnino**: Un pedazo de Sicilia en Roma. Sus *cannoli* son de otro planeta.
+        🌐 [Web Oficial](https://www.dagnino.com/)
+        2. **Santi Sebastiano e Valentino**: Para los amantes del buen pan y el café de especialidad.
+        🌐 [Ver en TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d10147828-Reviews-Santi_Sebastiano_e_Valentino-Rome_Lazio.html)
+        """
+        abrir_ventana("Desayuno Miércoles", info_des_mie)
+
+# 2. TRASLADO Y GALERÍA BORGHESE
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **12:00** | 🎨 Galería Borghese")
+with c2:
+    if st.button("🎨 Ver Guía", key="guia_mie_1"):
+        info_borg = """
+        **LA COLECCIÓN PRIVADA MÁS BELLA:**
+        * **Importante**: Hay que estar allí a las **11:30** (30 min antes) para dejar bolsos en el guardarropa.
+        * **Bernini**: Buscad 'Apolo y Dafne'. Veréis cómo el mármol se convierte en piel y hojas de laurel ante vuestros ojos.
+        * **Caravaggio**: Tienen una sala entera dedicada a sus cuadros llenos de sombras y luces.
+        * 🌐 [Web Oficial](https://galleriaborghese.beniculturali.it/)
+        """
+        abrir_ventana("Galería Borghese", info_borg, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apolo_y_Dafne_%28Bernini%29.jpg/800px-Apolo_y_Dafne_%28Bernini%29.jpg")
+
+# 3. ALMUERZO ZONA COLISEO
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **14:30** | 🍝 Almuerzo (Zona Imperial)")
+with c2:
+    if st.button("🍝 Sitios", key="com_mie_1"):
+        info_com_mie = """
+        **CERCA DEL COLISEO:**
+        1. **Hostaria al Gladiatore**: Comer con vistas al gran anfiteatro.
+        🌐 [Web Oficial](https://www.ristorantegladiatore.it/)
+        2. **Trattoria Luzzi**: Súper auténtica, ruidosa y con una lasaña al horno buenísima.
+        🌐 [Web Oficial](https://www.trattorialuzzi.it/)
+        """
+        abrir_ventana("Almuerzo Miércoles", info_com_mie)
+
+# 4. PASEO IMPERIAL ILUMINADO
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **18:00** | 🏟️ Roma Iluminada")
+with c2:
+    if st.button("🏛️ Ver Guía", key="guia_mie_2"):
+        info_iluminada = """

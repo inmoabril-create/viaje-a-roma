@@ -347,7 +347,7 @@ with c2:
         **DESAYUNO SICILIANO O MODERNO:**
         1. **Dagnino**: Un pedazo de Sicilia en Roma. Sus *cannoli* son de otro planeta.
         🌐 [Web Oficial](https://www.dagnino.com/)
-        2. **Santi Sebastiano e Valentino**: Para los amantes del buen pan y el café de especialidad.
+        2. **Santi Sebastiano e Valentino**: Para los amantes del buen pan y el café.
         🌐 [Ver en TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d10147828-Reviews-Santi_Sebastiano_e_Valentino-Rome_Lazio.html)
         """
         abrir_ventana("Desayuno Miércoles", info_des_mie)
@@ -360,9 +360,9 @@ with c2:
     if st.button("🎨 Ver Guía", key="guia_mie_1"):
         info_borg = """
         **LA COLECCIÓN PRIVADA MÁS BELLA:**
-        * **Importante**: Hay que estar allí a las **11:30** (30 min antes) para dejar bolsos en el guardarropa.
-        * **Bernini**: Buscad 'Apolo y Dafne'. Veréis cómo el mármol se convierte en piel y hojas de laurel ante vuestros ojos.
-        * **Caravaggio**: Tienen una sala entera dedicada a sus cuadros llenos de sombras y luces.
+        * **Importante**: Hay que estar allí a las **11:30** (30 min antes).
+        * **Bernini**: Buscad 'Apolo y Dafne'. Veréis cómo el mármol se convierte en piel.
+        * **Caravaggio**: Sala dedicada a sus cuadros llenos de sombras y luces.
         * 🌐 [Web Oficial](https://galleriaborghese.beniculturali.it/)
         """
         abrir_ventana("Galería Borghese", info_borg, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apolo_y_Dafne_%28Bernini%29.jpg/800px-Apolo_y_Dafne_%28Bernini%29.jpg")
@@ -377,7 +377,7 @@ with c2:
         **CERCA DEL COLISEO:**
         1. **Hostaria al Gladiatore**: Comer con vistas al gran anfiteatro.
         🌐 [Web Oficial](https://www.ristorantegladiatore.it/)
-        2. **Trattoria Luzzi**: Súper auténtica, ruidosa y con una lasaña al horno buenísima.
+        2. **Trattoria Luzzi**: Muy auténtica y ruidosa. Lasaña buenísima.
         🌐 [Web Oficial](https://www.trattorialuzzi.it/)
         """
         abrir_ventana("Almuerzo Miércoles", info_com_mie)
@@ -389,3 +389,24 @@ with c1:
 with c2:
     if st.button("🏛️ Ver Guía", key="guia_mie_2"):
         info_iluminada = """
+        **EL SUEÑO DE LOS CÉSARES:**
+        No hay nada como ver los Foros y el Coliseo iluminados.
+        * **El Mirador**: Subid a la Plaza del Campidoglio y asomaos por detrás al Foro Romano.
+        * **Paseo**: Bajad por la *Via dei Fori Imperiali* hasta el Coliseo.
+        """
+        abrir_ventana("Roma Imperial", info_iluminada, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Colosseum_at_night_2015.jpg/800px-Colosseum_at_night_2015.jpg")
+
+# 5. CENA DE DESPEDIDA
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **21:00** | 🍝 Cena Final")
+with c2:
+    if st.button("🍷 Detalles", key="com_mie_2"):
+        info_cena_final = """
+        **EL BROCHE DE ORO:**
+        1. **Trattoria Vecchia Roma**: Pedid los *Amatriciana Flambé* (pasta en rueda de queso).
+        🌐 [Web Oficial](https://www.trattoriavecchiaroma.it/)
+        2. **Trattoria Monti**: Cocina regional de altísimo nivel, más íntimo.
+        🌐 [Ver en TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d793216-Reviews-Trattoria_Monti-Rome_Lazio.html)
+        """
+        abrir_ventana("Cena de Despedida", info_cena_final)

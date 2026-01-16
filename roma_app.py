@@ -247,3 +247,86 @@ with c2:
         🌐 [Web Oficial](https://www.daenzoal29.com/)
         """
         abrir_ventana("Cena Lunes", info_tras)
+
+
+# ==========================================
+# MARTES 3: La Roma Barroca
+# ==========================================
+st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: La Roma Barroca</h1></div>', unsafe_allow_html=True)
+
+# 1. LOGÍSTICA Y DESAYUNO
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **08:30** | ☕ Desayuno y Logística")
+with c2:
+    if st.button("⚙️ Detalles", key="log_mar"):
+        info_log_mar = """
+        **DESAYUNO EN ESQUILINO:**
+        * **Pasticceria Regoli**: Paco, tenéis que probar el *Maritozzo* (bollo con nata). Es una institución desde 1916. 
+        * **Panella**: Excelente café y terraza.
+        
+        **TRASLADO AL CENTRO:**
+        * **Bus 64 o 40**: Desde Termini hasta 'Piazza Venezia'. 
+        * **Pago**: Tap & Go (1,50€ con tarjeta).
+        """
+        abrir_ventana("Logística Martes", info_log_mar)
+
+# 2. RUTA BARROCA I (TREVI Y ESPAÑA)
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **10:00** | ⛲ Trevi / España")
+with c2:
+    if st.button("📖 Ver Guía", key="guia_mar_1"):
+        info_barroca = """
+        **EL ESPLENDOR DE ROMA:**
+        * **Fontana di Trevi**: No olvidéis tirar la moneda de espaldas (una asegura el regreso). Fijaos en el 'As de Copas', la roca a la derecha que Bernini puso para tapar la vista a un barbero que le criticaba.
+        * **Piazza di Spagna**: La famosa escalinata. A sus pies, la Fuente de la Barcaccia (forma de barco porque tras una inundación del Tíber un bote llegó hasta aquí).
+        * **Via Condotti**: Si queréis ver los escaparates de las tiendas más lujosas de Italia.
+        """
+        abrir_ventana("Trevi y España", info_barroca, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Fontana_di_Trevi_Front.jpg/800px-Fontana_di_Trevi_Front.jpg")
+
+# 3. ALMUERZO (CANTINA E CUCINA)
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **14:00** | 🍝 Almuerzo (Cantina e Cucina)")
+with c2:
+    if st.button("🍝 Ver Sitio", key="com_mar_1"):
+        info_cantina = """
+        **CANTINA E CUCINA:**
+        Uno de los sitios con mejor ambiente del centro. 
+        * **Recomendación**: Sus albóndigas caseras y su Tiramisú son legendarios. 
+        * **Consejo**: Al ser tan popular, a veces hay un poco de cola, pero el servicio es muy rápido.
+        
+        🌐 [Web Oficial](https://cantinaecucina.it)
+        """
+        abrir_ventana("Almuerzo Martes", info_cantina)
+
+# 4. PANTEÓN Y NAVONA
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **16:30** | 🏛️ Panteón y Navona")
+with c2:
+    if st.button("📖 Ver Guía", key="guia_mar_2"):
+        info_pan = """
+        **PERFECCIÓN ARQUITECTÓNICA:**
+        * **El Panteón**: La cúpula de hormigón más grande del mundo (2.000 años después). El óculo central es la única luz. Si llueve, el agua se drena por agujeros casi invisibles en el suelo.
+        * **Piazza Navona**: Sigue la forma de un antiguo estadio romano. 
+        * **Fuente de los Cuatro Ríos**: Obra de Bernini. Representa el Nilo, el Ganges, el Danubio y el Río de la Plata.
+        """
+        abrir_ventana("Panteón y Navona", info_pan, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Pantheon_Rome_2016.jpg/800px-Pantheon_Rome_2016.jpg")
+
+# 5. CENA ZONA NAVONA
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **20:30** | 🍷 Cena Zona Navona")
+with c2:
+    if st.button("🍷 Opciones", key="com_mar_2"):
+        info_cena_mar = """
+        **DOS JOYAS PARA TERMINAR EL DÍA:**
+        1. **Cul de Sac**: Una de las vinerías más antiguas. Espectacular selección de quesos, embutidos y vinos. 
+        🌐 [Web Oficial](https://www.enotecaculdesacroma.it/)
+        
+        2. **Mimi e Coco**: Muy acogedor, ideal para una buena pasta y una copa de vino en un ambiente romántico.
+        🌐 [Web Oficial](https://mimiecoco.com)
+        """
+        abrir_ventana("Cena Martes", info_cena_mar)

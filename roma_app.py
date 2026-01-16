@@ -41,14 +41,13 @@ st.markdown("""
         border-radius: 10px;
     }
     
-    /* Estilo del Botón Iniciar Viaje (Verde) */
-    .stButton>button[kind="primary"] {
+    /* Estilo especial para el botón de INICIAR */
+    .stButton > button[kind="secondary"] {
         background-color: #008C45 !important;
         color: white !important;
         border: none !important;
-        border-radius: 50px !important;
-        padding: 15px !important;
         font-size: 20px !important;
+        padding: 20px !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -61,18 +60,18 @@ def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
         st.image(img1, caption=pie1, use_container_width=True)
     st.markdown(texto_markdown)
 
-# --- LÓGICA DE SESIÓN PARA LA PORTADA ---
+# --- LÓGICA DE NAVEGACIÓN ---
 if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
 # --- PANTALLA DE BIENVENIDA ---
 if not st.session_state.viaje_iniciado:
     st.markdown(f"""
-        <div style="text-align: center; padding: 45px 30px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 30px; max-width: 650px; margin-left: auto; margin-right: auto;">
+        <div style="text-align: center; padding: 50px 30px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 30px; max-width: 650px; margin-left: auto; margin-right: auto;">
             <h1 style="color: #1E3A5F; font-family: 'Georgia', serif; font-size: 50px; font-weight: 700; margin-bottom: 20px;">Escapada a Roma</h1>
             <p style="color: #ce1126; font-size: 28px; font-weight: 700; margin-bottom: 5px;">Febrero de 2026</p>
             <p style="color: #1E3A5F; font-size: 26px; font-weight: 600; margin-bottom: 35px;">Paco & Mari Trini</p>
-            <div style="font-style: italic; font-size: 19px; color: #333; line-height: 1.7; border-top: 1px solid #eee; padding-top: 30px; text-align: justify;">
+            <div style="font-style: italic; font-size: 20px !important; color: #333; line-height: 1.8; border-top: 1px solid #eee; padding-top: 30px; text-align: justify; padding-left: 10px; padding-right: 10px;">
                 "Hay viajes que se escriben en el mapa, y otros que se graban en el corazón. 
                 Esta aventura es un regalo que refleja el sinuoso y sorprendente camino que hemos recorrido juntos, 
                 con el profundo deseo y la ilusión inquebrantable de que el resto del camino que nos queda que andar 
@@ -89,11 +88,11 @@ if not st.session_state.viaje_iniciado:
     st.write("") 
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("🇮🇹 INICIAR VIAJE", type="primary"):
+        if st.button("🇮🇹 INICIAR VIAJE", kind="secondary"):
             st.session_state.viaje_iniciado = True
             st.rerun()
 
-# --- CONTENIDO DEL VIAJE (TODA TU COPIA ESTÁ AQUÍ) ---
+# --- CONTENIDO DEL VIAJE (TU COPIA) ---
 else:
     st.title("🇮🇹 Roma 2026")
     st.write("### Paco & Mari Trini")
@@ -108,11 +107,11 @@ else:
             abrir_ventana("Llegada a Roma", info_t)
 
     c1, c2 = st.columns([0.6, 0.4])
-    with c1: st.write("🕑 **20:00** | 🍷 Cena (Barrio Monti)")
+    with c1: st.write("🕑 **15:30** | 🍕 Almuerzo")
     with c2:
-        if st.button("🍷 Comidas", key="ce_dom"):
-            info_ce = "🍴 **Ai Tre Scalini**. Vinería mítica de Monti.\n🌐 [Web Oficial](http://www.aitrescalini.org)"
-            abrir_ventana("Cena en Monti", info_ce, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Via_Panisperna_-_Rione_Monti.jpg/800px-Via_Panisperna_-_Rione_Monti.jpg")
+        if st.button("🍴 Opciones", key="l_dom"):
+            info_l = "1. [La Gallina Bianca](http://www.lagallinabiancaroma.it)\n2. [Mercato Centrale](https://www.mercatocentrale.it/roma/)"
+            abrir_ventana("Almuerzo", info_l, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg")
 
     # LUNES
     st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: El Corazón de Roma</h1></div>', unsafe_allow_html=True)
@@ -120,15 +119,8 @@ else:
     with c1: st.write("🕑 **09:00** | 🏛️ Museos Vaticanos")
     with c2:
         if st.button("📖 Ver Guía", key="guia_lun_1"):
-            info_vat = "**MUSEOS VATICANOS:**\nReserva: `2L2NFFJ00000004GM`.\nNo os perdáis la Capilla Sixtina."
+            info_vat = "Reserva: `2L2NFFJ00000004GM`. No os perdáis la Capilla Sixtina."
             abrir_ventana("Vaticano", info_vat, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Sistine_Chapel_Ceiling_01.jpg/800px-Sistine_Chapel_Ceiling_01.jpg")
-
-    c1, c2 = st.columns([0.6, 0.4])
-    with c1: st.write("🕑 **20:30** | 🍷 Cena en Trastevere")
-    with c2:
-        if st.button("🍷 Comidas", key="com_lun_2"):
-            info_tras = "1. **Tonnarello**\n2. **Da Enzo al 29**"
-            abrir_ventana("Cena Lunes", info_tras)
 
     # MARTES
     st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: La Roma Barroca</h1></div>', unsafe_allow_html=True)
@@ -147,16 +139,16 @@ else:
             abrir_ventana("Borghese", "Obras de Bernini y Caravaggio.", img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apolo_y_Dafne_%28Bernini%29.jpg/800px-Apolo_y_Dafne_%28Bernini%29.jpg")
 
     # JUEVES
-    st.markdown('<div class="highlight-day"><h1>📆 JUEVES 5: Regreso</h1></div>', unsafe_allow_html=True)
+    st.markdown('<div class="highlight-day"><h1>📆 JUEVES 5: Arrivederci Roma</h1></div>', unsafe_allow_html=True)
     c1, c2 = st.columns([0.6, 0.4])
     with c1: st.write("🕑 **03:45** | 🛫 Traslado Aeropuerto")
     with c2:
         if st.button("🚕 Transporte", key="tr_jue_fin"):
             abrir_ventana("Regreso", "Taxi oficial 50€. Salida vuelo 06:40.")
 
-    # BOTÓN PARA VOLVER A LA PORTADA
+    # BOTÓN PARA VOLVER
     st.write("---")
-    if st.button("🔙 VOLVER A PORTADA"):
+    if st.button("🔙 VOLVER A LA PORTADA"):
         st.session_state.viaje_iniciado = False
         st.rerun()
 

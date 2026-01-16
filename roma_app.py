@@ -4,45 +4,81 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS REFORZADOS ---
+# --- INTERFAZ MODERNA "ITALIA PREMIUM" ---
 st.markdown("""
     <style>
-    .stApp { background-color: #Fdfcf0; }
-    
+    /* Fondo con textura suave */
+    .stApp {
+        background-color: #Fdfcf0;
+        background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px);
+        background-size: 20px 20px;
+    }
+
+    /* Cabecera de los días: Azul Marino Elegante */
     .highlight-day {
-        background-color: #1E3A5F;
+        background: linear-gradient(135deg, #1E3A5F 0%, #12263a 100%);
         color: white !important;
-        padding: 15px;
-        border-radius: 12px;
+        padding: 25px;
+        border-radius: 20px;
         text-align: center;
-        margin-top: 25px;
-        margin-bottom: 20px;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        border-left: 8px solid #008C45; /* Detalle bandera italiana */
+        border-right: 8px solid #CE1126;
     }
-    .highlight-day h1 { color: white !important; font-size: 24px !important; margin:0; }
-
-    .stMarkdown p, .stMarkdown li, div {
-        color: #1a1a1a !important;
-        font-size: 18px !important;
-    }
-
-    a {
-        color: #0056b3 !important;
-        text-decoration: underline !important;
-        font-weight: bold !important;
+    .highlight-day h1 { 
+        color: white !important; 
+        font-size: 28px !important; 
+        font-weight: 800 !important;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
+    /* Tarjetas de actividades */
+    [data-testid="column"] {
+        background: white;
+        padding: 18px;
+        border-radius: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        transition: transform 0.2s ease;
+    }
+    
+    [data-testid="column"]:hover {
+        transform: scale(1.02);
+        border-color: #008C45;
+    }
+
+    /* Botones Modernos tipo Píldora */
     div.stButton > button {
         width: 100%;
-        background-color: white !important;
-        border: 2px solid #1E3A5F !important;
-        color: #1E3A5F !important;
-        font-weight: bold;
-        padding: 12px;
-        border-radius: 10px;
+        background: #008C45 !important;
+        color: white !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        border-radius: 50px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    div.stButton > button:hover {
+        background: #ce1126 !important; /* Cambia a rojo al tocarlo */
+        color: white !important;
+    }
+
+    /* Texto más profesional */
+    .stMarkdown p {
+        color: #2c3e50 !important;
+        font-size: 19px !important;
+        font-weight: 500;
     }
     </style>
 """, unsafe_allow_html=True)
 
+# --- FUNCIÓN DE VENTANA (MODAL) ---
 @st.dialog("🇮🇹 DETALLES")
 def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
     st.markdown(f"# {titulo}")
@@ -52,8 +88,15 @@ def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
 
 # --- PORTADA ---
 st.title("🇮🇹 Roma 2026")
-st.write("### Paco & Mari Trini")
+st.markdown("### Paco & Mari Trini")
 
+# Contador de días (opcional, queda muy bien)
+fecha_viaje = datetime(2026, 2, 1)
+dias_faltan = (fecha_viaje - datetime.now()).days
+if dias_faltan > 0:
+    st.warning(f"✈️ **¡Solo quedan {dias_faltan} días para el gran viaje!**")
+
+# AQUÍ EMPIEZA TU CÓDIGO DEL DOMINGO EN ADELANTE...
 # ==========================================
 # DOMINGO 1: Benvenuti
 # ==========================================

@@ -8,7 +8,6 @@ st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centere
 st.markdown("""
     <style>
     .stApp { background-color: #Fdfcf0; }
-    
     .highlight-day {
         background-color: #1E3A5F;
         color: white !important;
@@ -19,18 +18,8 @@ st.markdown("""
         margin-bottom: 20px;
     }
     .highlight-day h1 { color: white !important; font-size: 24px !important; margin:0; }
-
-    .stMarkdown p, .stMarkdown li, div {
-        color: #1a1a1a !important;
-        font-size: 18px !important;
-    }
-
-    a {
-        color: #0056b3 !important;
-        text-decoration: underline !important;
-        font-weight: bold !important;
-    }
-
+    .stMarkdown p, .stMarkdown li, div { color: #1a1a1a !important; font-size: 18px !important; }
+    a { color: #0056b3 !important; text-decoration: underline !important; font-weight: bold !important; }
     div.stButton > button {
         width: 100%;
         background-color: white !important;
@@ -40,8 +29,6 @@ st.markdown("""
         padding: 12px;
         border-radius: 10px;
     }
-
-    /* Estilo para el botón INICIAR VIAJE */
     .btn-inicio button {
         background-color: #008C45 !important;
         color: white !important;
@@ -85,7 +72,6 @@ if not st.session_state.viaje_iniciado:
             </div>
         </div>
     """, unsafe_allow_html=True)
-    
     st.write("") 
     _, col_btn, _ = st.columns([0.5, 1, 0.5])
     with col_btn:
@@ -95,46 +81,49 @@ if not st.session_state.viaje_iniciado:
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
-# --- 2. CONTENIDO DEL VIAJE (RECUPERANDO TU COPIA BUENA) ---
+# --- 2. CONTENIDO DEL VIAJE ---
 else:
     # --- DOMINGO ---
     st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Benvenuti</h1></div>', unsafe_allow_html=True)
-    
-    # 1. TRASLADO
-    c1, c2 = st.columns([0.6, 0.4])
-    with c1: st.write("🕑 **14:00** | 🛬 Traslado Aeropuerto")
-    with c2:
+    c1, c2 = st.columns([0.6, 0.4]); with c2:
         if st.button("🚌 Transporte", key="t_dom"):
-            info_t = """**OPCIONES DE LLEGADA:**\n* **🚆 Tren Leonardo Express**: Directo a Termini (32 min). 14€.\n* **🚌 Autobús (Terravision / TAM)**: Unos 6-7€. Tarda 1 hora.\n* **🚖 Taxi Oficial**: Tarifa fija de **50€**.\n\n💡 **Consejo**: El tren es lo más cómodo para evitar el tráfico."""
-            abrir_ventana("Llegada a Roma", info_t)
-
-    # 2. ALMUERZO
-    c1, c2 = st.columns([0.6, 0.4])
+            abrir_ventana("Llegada", "Tren Leonardo Express (14€) o Taxi Oficial (50€).")
+    with c1: st.write("🕑 **14:00** | 🛬 Traslado Aeropuerto")
+    
+    c1, c2 = st.columns([0.6, 0.4]); with c2:
+        if st.button("🍴 Almuerzo", key="l_dom"):
+            abrir_ventana("Comida", "La Gallina Bianca o Mercato Centrale.", img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg")
     with c1: st.write("🕑 **15:30** | 🍕 Almuerzo")
-    with c2:
-        if st.button("🍴 Opciones", key="l_dom"):
-            info_l = """**OPCIONES DE ALMUERZO:**\n1. **La Gallina Bianca**: Cocina tradicional romana.\n🌐 [Web Oficial](http://www.lagallinabiancaroma.it)\n2. **Mercato Centrale**: Puestos artesanos gourmet.\n🌐 [Web Oficial](https://www.mercatocentrale.it/roma/)"""
-            abrir_ventana("Almuerzo", info_l, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Roma_Termini_Mercato_Centrale.jpg/800px-Roma_Termini_Mercato_Centrale.jpg", pie1="Mercato Centrale Termini")
 
-    # 3. SANTA MARIA MAGGIORE
-    c1, c2 = st.columns([0.6, 0.4])
-    with c1: st.write("🕑 **17:30** | ⛪ Sta. Maria Maggiore")
-    with c2:
-        if st.button("📖 Ver Guía", key="sm_dom"):
-            info_sm = """**LA BASÍLICA DE ORO:**\nEs la más grande de las iglesias dedicadas a la Virgen en Roma.\n* **El Techo**: Decorado con el primer oro traído de América.\n* **Reliquia**: El Pesebre de Belén se guarda bajo el altar.\n* 🌐 [Web Oficial](https://www.vatican.va/various/basiliche/sm_maggiore/index_it.html)"""
-            abrir_ventana("Santa Maria Maggiore", info_sm, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Basilica_di_Santa_Maria_Maggiore_-_Rome.jpg/800px-Basilica_di_Santa_Maria_Maggiore_-_Rome.jpg")
+    # --- LUNES ---
+    st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: Vaticano</h1></div>', unsafe_allow_html=True)
+    c1, c2 = st.columns([0.6, 0.4]); with c2:
+        if st.button("🏛️ Ver Guía", key="vat_lun"):
+            abrir_ventana("Vaticano", "Capilla Sixtina. Reserva: 2L2NFFJ00000004GM.", img1="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Sistine_Chapel_Ceiling_01.jpg/800px-Sistine_Chapel_Ceiling_01.jpg")
+    with c1: st.write("🕑 **09:00** | 🏛️ Museos Vaticanos")
 
-    # 4. SAN PIETRO IN VINCOLI
-    c1, c2 = st.columns([0.6, 0.4])
-    with c1: st.write("🕑 **18:30** | ⛪ S. Pietro in Vincoli")
-    with c2:
-        if st.button("📖 El Moisés", key="mo_dom"):
-            info_mo = """**EL MOISÉS DE MIGUEL ÁNGEL:**\nContemplad la potencia de su mirada y el detalle de las venas en el brazo.\n* **Curiosidad**: Los cuernos son un error histórico de traducción.\n* **Las Cadenas**: Se exponen las cadenas originales de San Pedro.\n* 🌐 [Información Turística](https://www.turismoroma.it/it/luoghi/basilica-di-san-pietro-vincoli)"""
-            abrir_ventana("San Pietro in Vincoli", info_mo, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg/800px-Mois%C3%A9s_de_Miguel_%C3%81ngel_en_San_Pietro_in_Vincoli.jpg")
+    # --- MARTES ---
+    st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: Barroco</h1></div>', unsafe_allow_html=True)
+    c1, c2 = st.columns([0.6, 0.4]); with c2:
+        if st.button("⛲ Trevi", key="tre_mar"):
+            abrir_ventana("Roma Barroca", "Fontana di Trevi y Panteón.", img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Fontana_di_Trevi_Front.jpg/800px-Fontana_di_Trevi_Front.jpg")
+    with c1: st.write("🕑 **10:00** | ⛲ Trevi / España")
 
-    # 5. CENA MONTI
-    c1, c2 = st.columns([0.6, 0.4])
-    with c1: st.write("🕑 **20:00** | 🍷 Cena (Barrio Monti)")
-    with c2:
-        if st.button("🍷 Comidas", key="ce_dom"):
-            info_ce = """🍴 **Ai Tre Scalini**: Una de las vinerías más auténticas de Roma.\n🌐 [Web Oficial
+    # --- MIÉRCOLES ---
+    st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Arte e Imperio</h1></div>', unsafe_allow_html=True)
+    c1, c2 = st.columns([0.6, 0.4]); with c2:
+        if st.button("🎨 Borghese", key="bor_mie"):
+            abrir_ventana("Galería Borghese", "Obras de Bernini.", img1="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apolo_y_Dafne_%28Bernini%29.jpg/800px-Apolo_y_Dafne_%28Bernini%29.jpg")
+    with c1: st.write("🕑 **12:00** | 🎨 Galería Borghese")
+
+    # --- JUEVES ---
+    st.markdown('<div class="highlight-day"><h1>📆 JUEVES 5: Regreso</h1></div>', unsafe_allow_html=True)
+    c1, c2 = st.columns([0.6, 0.4]); with c2:
+        if st.button("🚕 Traslado", key="fin_jue"):
+            abrir_ventana("Aeropuerto", "Taxi 03:45 (Tarifa fija 50€). Vuelo 06:40.")
+    with c1: st.write("🕑 **03:45** | 🛫 Traslado")
+
+    st.write("---")
+    if st.button("🔙 VOLVER A PORTADA", key="rev"):
+        st.session_state.viaje_iniciado = False
+        st.rerun()

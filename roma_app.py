@@ -1,112 +1,71 @@
-import streamlit as st
-from datetime import datetime
-
-# --- CONFIGURACIÓN DE PÁGINA ---
-st.set_page_config(page_title="Escapada a Roma 2026", page_icon="🇮🇹", layout="centered")
-
-# --- ESTILOS CSS "ITALIA PREMIUM" ---
-st.markdown("""
-    <style>
-    .stApp {
-        background-color: #Fdfcf0;
-    }
-    
-    /* Estilo para la Pantalla de Bienvenida */
-    .welcome-container {
-        text-align: center;
-        padding: 40px 20px;
-        background: white;
-        border-radius: 30px;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        border: 2px solid #f0ede0;
-        margin-top: 50px;
-    }
-    
-    .main-title {
-        color: #1E3A5F;
-        font-size: 42px !important;
-        font-weight: 800 !important;
-        margin-bottom: 10px;
-    }
-    
-    .subtitle {
-        color: #ce1126;
-        font-size: 24px !important;
-        font-weight: 600;
-        margin-bottom: 30px;
-    }
-
-    .dedication-text {
-        font-style: italic;
-        font-size: 20px !important;
-        color: #555;
-        line-height: 1.6;
-        margin-bottom: 40px;
-        padding: 0 20px;
-    }
-
-    /* Estilo para los títulos de los días (dentro de la app) */
-    .highlight-day {
-        background: linear-gradient(135deg, #1E3A5F 0%, #12263a 100%);
-        color: white !important;
-        padding: 25px;
-        border-radius: 20px;
-        text-align: center;
-        margin-top: 30px;
-        margin-bottom: 25px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-    
-    /* Botones Modernos */
-    div.stButton > button {
-        width: 100%;
-        background: #008C45 !important;
-        color: white !important;
-        border: none !important;
-        padding: 15px 30px !important;
-        border-radius: 50px !important;
-        font-weight: 700 !important;
-        font-size: 18px !important;
-        text-transform: uppercase;
-        box-shadow: 0 4px 15px rgba(0,140,69,0.3);
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-# --- LÓGICA DE NAVEGACIÓN ---
-if 'viaje_iniciado' not in st.session_state:
-    st.session_state.viaje_iniciado = False
-
-# --- PANTALLA DE BIENVENIDA ---
+# --- PANTALLA DE BIENVENIDA (ACTUALIZADA) ---
 if not st.session_state.viaje_iniciado:
     st.markdown(f"""
-        <div class="welcome-container">
-            <h1 class="main-title">Escapada a Roma</h1>
-            <p class="subtitle">Febrero de 2026 • Paco & Mari Trini</p>
-            <div class="dedication-text">
+        <div style="
+            text-align: center;
+            padding: 50px 30px;
+            background-color: white;
+            border: 8px double #1E3A5F; /* Marco elegante de doble línea */
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        ">
+            <h1 style="
+                color: #1E3A5F;
+                font-size: 50px !important;
+                font-weight: 900 !important;
+                margin-bottom: 20px;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            ">Escapada a Roma</h1>
+            
+            <p style="
+                color: #ce1126;
+                font-size: 28px !important;
+                font-weight: 700;
+                margin-bottom: 5px;
+                letter-spacing: 1px;
+            ">Febrero de 2026</p>
+            
+            <p style="
+                color: #1E3A5F;
+                font-size: 26px !important;
+                font-weight: 600;
+                margin-top: 0px;
+                margin-bottom: 35px;
+            ">Paco & Mari Trini</p>
+            
+            <div style="
+                font-style: italic;
+                font-size: 21px !important;
+                color: #333;
+                line-height: 1.7;
+                margin-bottom: 20px;
+                padding: 0 10px;
+                border-top: 1px solid #eee;
+                padding-top: 30px;
+            ">
                 "Hay viajes que se escriben en el mapa, y otros que se graban en el corazón. 
                 Esta aventura es el reflejo de vuestro camino juntos, un regalo lleno de 
                 historia, luz y sabor, nacido del cariño más profundo de vuestros hijos."
                 <br><br>
-                <b>Un inolvidable regalo sorpresa de Cristina y Víctor.</b>
+                <span style="font-weight: 800; color: #1E3A5F;">
+                Un inolvidable regalo sorpresa de Cristina y Víctor.
+                </span>
             </div>
         </div>
     """, unsafe_allow_html=True)
     
     st.write("") # Espacio
-    if st.button("🇮🇹 INICIAR VIAJE"):
-        st.session_state.viaje_iniciado = True
-        st.rerun()
-
-# --- CONTENIDO PRINCIPAL (SOLO SE VE SI PULSAN EL BOTÓN) ---
-else:
-    st.markdown("<h2 style='text-align: center; color: #1E3A5F;'>🇮🇹 Diario de Ruta</h2>", unsafe_allow_html=True)
-    
-    # Aquí pegas todo el código de los días (Domingo, Lunes, etc.)
-    # Ejemplo del Domingo:
-    st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Benvenuti</h1></div>', unsafe_allow_html=True)
-    
-    # ... (Sigue con el resto de tus días)
+    # Centramos el botón de inicio
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button("🇮🇹 INICIAR VIAJE"):
+            st.session_state.viaje_iniciado = True
+            st.rerun()
 # AQUÍ EMPIEZA TU CÓDIGO DEL DOMINGO EN ADELANTE...
 # ==========================================
 # DOMINGO 1: Benvenuti

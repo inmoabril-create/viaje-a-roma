@@ -134,3 +134,94 @@ with c2:
 
 st.write("---")
 st.caption("Guía Roma 2026 - Paco & Trini")
+
+
+# ==========================================
+# LUNES 2: El Corazón de Roma (Vaticano y Trastevere)
+# ==========================================
+st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: El Corazón de Roma</h1></div>', unsafe_allow_html=True)
+
+# 1. TRASLADO AL VATICANO
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **07:15** | 🚌 Traslado al Vaticano")
+with c2:
+    if st.button("🚇 Logística", key="tr_lun_1"):
+        info_tr = """
+        **CÓMO LLEGAR DESDE EL HOTEL:**
+        * **Metro Línea A (Roja)**: Es lo más directo. Id hacia la parada 'Termini' o 'Vittorio Emanuele' y bajad en **Ottaviano**. Desde allí hay 5 min a pie.
+        * **Taxi**: Tardará unos 15-20 min y os costará unos 15€.
+        * **Tap & Go**: Recordad que podéis pagar el metro apoyando vuestra tarjeta bancaria directamente en el torno.
+        """
+        abrir_ventana("Hacia el Vaticano", info_tr)
+
+# 2. MUSEOS VATICANOS Y CAPILLA SIXTINA
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **09:00** | 🏛️ Museos Vaticanos")
+with c2:
+    if st.button("📖 Ver Guía", key="guia_lun_1"):
+        info_vat = """
+        **EL TESORO DEL PAPA:**
+        Estáis ante una de las colecciones de arte más grandes del mundo. 
+        
+        * **La Capilla Sixtina**: Obra cumbre de Miguel Ángel. El techo narra el Génesis y el testero el Juicio Final. **Importante**: No se permiten fotos y hay que guardar silencio.
+        * **Estancias de Rafael**: No os perdáis 'La Escuela de Atenas', donde aparecen los grandes filósofos con caras de artistas de la época (Leonardo, Miguel Ángel...).
+        * **Galería de los Mapas**: Un pasillo de 120 metros con mapas pintados al fresco que es sencillamente espectacular.
+        * **Reserva**: Tened a mano el código `2L2NFFJ00000004GM`.
+        
+        🌐 [Web Oficial Museos](https://www.museivaticani.va)
+        """
+        abrir_ventana("Museos Vaticanos", info_vat, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Sistine_Chapel_Ceiling_01.jpg/800px-Sistine_Chapel_Ceiling_01.jpg")
+
+# 3. ALMUERZO EN PRATI
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **14:30** | 🍝 Almuerzo (Zona Prati)")
+with c2:
+    if st.button("🍕 Opciones", key="com_lun_1"):
+        info_com = """
+        **DÓNDE COMER CERCA:**
+        1. **Pastasciutta**: Ideal si queréis algo rápido pero artesano. Pasta fresca deliciosa a muy buen precio.
+        🌐 [Web Oficial](https://www.pastasciuttaroma.it)
+        
+        2. **L'Isola della Pizza**: Un sitio de toda la vida. Excelente carne a la brasa y cocina romana sentados tranquilos.
+        🌐 [Web Oficial](https://www.lisoladellapizza.com)
+        """
+        abrir_ventana("Almuerzo Vaticano", info_com)
+
+# 4. CASTEL SANT'ANGELO
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **16:30** | 🏰 Castel Sant'Angelo")
+with c2:
+    if st.button("🏰 Ver Guía", key="guia_lun_2"):
+        info_cas = """
+        **FORTALEZA Y REFUGIO:**
+        Este castillo ha sido mausoleo, cárcel y palacio de los Papas.
+        
+        * **El Ángel**: Arriba del todo veréis la estatua del Arcángel San Miguel envainando la espada, que simboliza el fin de una antigua peste.
+        * **El Passetto**: Existe un pasadizo amurallado que conecta el Vaticano con el castillo para que el Papa pudiera escapar en caso de ataque.
+        * **Vistas**: Subid a la terraza superior; para mí, es la mejor vista de la Cúpula de San Pedro de toda Roma.
+        
+        🌐 [Web Oficial](https://direzionemuseiroma.cultura.gov.it/museo-nazionale-di-castel-santangelo/)
+        """
+        abrir_ventana("Castel Sant'Angelo", info_cas, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Castel_Sant%27Angelo_Rome.jpg/800px-Castel_Sant%27Angelo_Rome.jpg")
+
+# 5. ATARDECER Y CENA EN TRASTEVERE
+c1, c2 = st.columns([0.6, 0.4])
+with c1: 
+    st.write("🕑 **20:00** | 🍷 Trastevere")
+with c2:
+    if st.button("🍷 Comidas", key="com_lun_2"):
+        info_tras = """
+        **EL BARRIO MÁS PINTORESCO:**
+        Al cruzar el río llegaréis al Trastevere. Es el momento de perderse por sus calles empedradas.
+        
+        1. **Tonnarello**: El más famoso. Su pasta servida en la sartén es ya un icono. Suele haber cola, pero va rápido.
+        🌐 [Web Oficial](https://tonnarello.it)
+        
+        2. **Da Enzo al 29**: Una trattoria auténtica y pequeña. Si queréis probar la verdadera alcachofa a la romana o una carbonara de 10, es aquí.
+        🌐 [Web Oficial](https://www.daenzoal29.com/)
+        """
+        abrir_ventana("Noche en Trastevere", info_tras, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Trastevere_-_piazza_Sant%27Egidio.jpg/800px-Trastevere_-_piazza_Sant%27Egidio.jpg")

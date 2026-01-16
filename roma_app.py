@@ -262,12 +262,14 @@ with c2:
     if st.button("⚙️ Detalles", key="log_mar"):
         info_log_mar = """
         **DESAYUNO EN ESQUILINO:**
-        * **Pasticceria Regoli**: Paco, tenéis que probar el *Maritozzo* (bollo con nata). Es una institución desde 1916. 
-        * **Panella**: Excelente café y terraza.
+        * **Pasticceria Regoli**: Paco, el *Maritozzo* aquí es sagrado. 
+        🌐 [Ver en TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d1102555-Reviews-Pasticceria_Regoli-Rome_Lazio.html)
+        * **Panella**: Panadería artesana de lujo con terraza.
+        🌐 [Web Oficial](https://www.panellaroma.com/)
         
         **TRASLADO AL CENTRO:**
-        * **Bus 64 o 40**: Desde Termini hasta 'Piazza Venezia'. 
-        * **Pago**: Tap & Go (1,50€ con tarjeta).
+        * **Bus 64 o 40**: Directo a 'Piazza Venezia'.
+        * **Pago**: Sistema Tap & Go (1,50€).
         """
         abrir_ventana("Logística Martes", info_log_mar)
 
@@ -279,9 +281,9 @@ with c2:
     if st.button("📖 Ver Guía", key="guia_mar_1"):
         info_barroca = """
         **EL ESPLENDOR DE ROMA:**
-        * **Fontana di Trevi**: No olvidéis tirar la moneda de espaldas (una asegura el regreso). Fijaos en el 'As de Copas', la roca a la derecha que Bernini puso para tapar la vista a un barbero que le criticaba.
-        * **Piazza di Spagna**: La famosa escalinata. A sus pies, la Fuente de la Barcaccia (forma de barco porque tras una inundación del Tíber un bote llegó hasta aquí).
-        * **Via Condotti**: Si queréis ver los escaparates de las tiendas más lujosas de Italia.
+        * **Fontana di Trevi**: Obra maestra de Nicola Salvi. Recordad tirar la moneda con la mano derecha sobre el hombro izquierdo.
+        * **Piazza di España**: Sus 135 peldaños y la fuente de la Barcaccia de Bernini.
+        * **Curiosidad**: En la Plaza de España está el McDonald's más elegante del mundo (por si queréis cotillear el interior).
         """
         abrir_ventana("Trevi y España", info_barroca, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Fontana_di_Trevi_Front.jpg/800px-Fontana_di_Trevi_Front.jpg")
 
@@ -293,9 +295,8 @@ with c2:
     if st.button("🍝 Ver Sitio", key="com_mar_1"):
         info_cantina = """
         **CANTINA E CUCINA:**
-        Uno de los sitios con mejor ambiente del centro. 
-        * **Recomendación**: Sus albóndigas caseras y su Tiramisú son legendarios. 
-        * **Consejo**: Al ser tan popular, a veces hay un poco de cola, pero el servicio es muy rápido.
+        Comida casera en un local con alma. 
+        * **No os perdáis**: La focaccia y la Carbonara. El personal es famosamente amable.
         
         🌐 [Web Oficial](https://cantinaecucina.it)
         """
@@ -308,10 +309,10 @@ with c1:
 with c2:
     if st.button("📖 Ver Guía", key="guia_mar_2"):
         info_pan = """
-        **PERFECCIÓN ARQUITECTÓNICA:**
-        * **El Panteón**: La cúpula de hormigón más grande del mundo (2.000 años después). El óculo central es la única luz. Si llueve, el agua se drena por agujeros casi invisibles en el suelo.
-        * **Piazza Navona**: Sigue la forma de un antiguo estadio romano. 
-        * **Fuente de los Cuatro Ríos**: Obra de Bernini. Representa el Nilo, el Ganges, el Danubio y el Río de la Plata.
+        **LUZ Y ARTE:**
+        * **El Panteón**: Tumba de Rafael y de los reyes de Italia. 
+        * 🎟️ **Entradas**: [Web Oficial Musei Italiani](https://portale.museiitaliani.it/b2c/#es/buyTicket/37823f66-f481-42a2-8947-f377a06a6c4c)
+        * **Piazza Navona**: No olvidéis entrar en la iglesia de *Sant'Agnese in Agone* (es gratis y preciosa).
         """
         abrir_ventana("Panteón y Navona", info_pan, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Pantheon_Rome_2016.jpg/800px-Pantheon_Rome_2016.jpg")
 
@@ -322,11 +323,10 @@ with c1:
 with c2:
     if st.button("🍷 Opciones", key="com_mar_2"):
         info_cena_mar = """
-        **DOS JOYAS PARA TERMINAR EL DÍA:**
-        1. **Cul de Sac**: Una de las vinerías más antiguas. Espectacular selección de quesos, embutidos y vinos. 
+        **SABORES DE SIEMPRE:**
+        1. **Cul de Sac**: Una experiencia para el paladar.
         🌐 [Web Oficial](https://www.enotecaculdesacroma.it/)
-        
-        2. **Mimi e Coco**: Muy acogedor, ideal para una buena pasta y una copa de vino en un ambiente romántico.
+        2. **Mimi e Coco**: Pasta fresca y buena música ambiental.
         🌐 [Web Oficial](https://mimiecoco.com)
         """
         abrir_ventana("Cena Martes", info_cena_mar)

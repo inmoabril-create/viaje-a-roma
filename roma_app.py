@@ -81,8 +81,10 @@ if not st.session_state.viaje_iniciado:
             st.rerun()
         st.markdown('</div>', unsafe_allow_html=True)
 
-# --- 2. CONTENIDO DEL VIAJE ---
+# --- CONTENIDO DEL VIAJE (TU COPIA) ---
 else:
+    st.title("🇮🇹 Roma 2026")
+    st.write("### Paco & Mari Trini")
     # --- DOMINGO ---
     st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Benvenuti</h1></div>', unsafe_allow_html=True)
     c1, c2 = st.columns([0.6, 0.4]); with c2:

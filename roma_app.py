@@ -84,22 +84,22 @@ def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
 if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
+# ==========================================
+# 🎵 REPRODUCTOR DE MÚSICA (FIJO SIEMPRE)
+# ==========================================
+# Lo ponemos fuera del if/else para que aparezca en todas las pantallas
+st.markdown("""
+    <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <iframe width="100%" height="100" src="https://www.youtube.com/embed/ChygZLpJDNE?start=940" title="Himno de la Alegría" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+""", unsafe_allow_html=True)
+
 
 # ==========================================
-# 1. PANTALLA DE BIENVENIDA (CON MÚSICA ARREGLADA)
+# 1. PANTALLA DE BIENVENIDA
 # ==========================================
 if not st.session_state.viaje_iniciado:
     
-    # --- REPRODUCTOR DE MÚSICA (Beethoven - Oda a la Alegría) ---
-    # Versión BBC Proms (Barenboim) - Empieza directo en la parte coral
-    st.markdown("""
-        <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            <iframe width="100%" height="160" src="https://www.youtube.com/embed/ChygZLpJDNE?start=940" title="Himno de la Alegría" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <p style="text-align: center; color: #888; font-size: 13px; margin-top: -15px; font-style: italic;">🎵 Dale al Play para ambientar la lectura</p>
-    """, unsafe_allow_html=True)
-
-    # --- CUADRO DE TEXTO Y DEDICATORIA ---
     st.markdown("""
         <div style="text-align: center; padding: 40px 20px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 10px; max-width: 650px; margin-left: auto; margin-right: auto;">
             <h1 style="color: #1E3A5F; font-family: 'Georgia', serif; font-size: 42px; font-weight: 700; margin-bottom: 15px;">Escapada a Roma</h1>

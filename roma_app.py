@@ -86,22 +86,22 @@ if 'viaje_iniciado' not in st.session_state:
 
 
 # ==========================================
-# 1. PANTALLA DE BIENVENIDA
+# 1. PANTALLA DE BIENVENIDA (CON MÚSICA ARREGLADA)
 # ==========================================
 if not st.session_state.viaje_iniciado:
     
-    # --- REPRODUCTOR VISIBLE ARRIBA (INTENTO DE AUTOPLAY) ---
-    # Beethoven 9ª - Minuto 11:00 (660 seg)
+    # --- REPRODUCTOR DE MÚSICA (Beethoven - Oda a la Alegría) ---
+    # Versión BBC Proms (Barenboim) - Empieza directo en la parte coral
     st.markdown("""
-        <div style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-            <iframe width="100%" height="200" src="https://www.youtube.com/embed/Q0F5135z3wY?start=660&autoplay=1" title="Beethoven" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <iframe width="100%" height="160" src="https://www.youtube.com/embed/ChygZLpJDNE?start=940" title="Himno de la Alegría" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <p style="text-align: center; color: #666; font-size: 14px; margin-top: -15px;">🎵 Si no suena automático, pulsa Play</p>
+        <p style="text-align: center; color: #888; font-size: 13px; margin-top: -15px; font-style: italic;">🎵 Dale al Play para ambientar la lectura</p>
     """, unsafe_allow_html=True)
 
-    # --- TEXTO DE DEDICATORIA ---
+    # --- CUADRO DE TEXTO Y DEDICATORIA ---
     st.markdown("""
-        <div style="text-align: center; padding: 40px 20px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 20px; max-width: 650px; margin-left: auto; margin-right: auto;">
+        <div style="text-align: center; padding: 40px 20px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 10px; max-width: 650px; margin-left: auto; margin-right: auto;">
             <h1 style="color: #1E3A5F; font-family: 'Georgia', serif; font-size: 42px; font-weight: 700; margin-bottom: 15px;">Escapada a Roma</h1>
             <p style="color: #ce1126; font-size: 26px; font-weight: 700; margin-bottom: 5px;">Febrero de 2026</p>
             <p style="color: #1E3A5F; font-size: 24px; font-weight: 600; margin-bottom: 30px;">Paco & Mari Trini</p>
@@ -119,12 +119,12 @@ if not st.session_state.viaje_iniciado:
         </div>
     """, unsafe_allow_html=True)
     
-    st.write("")
-    st.write("")
-    
-    # Botón de Inicio
-    col1, col2, col3 = st.columns([0.1, 0.8, 0.1])
-    with col2:
+    st.write("") 
+    st.write("") 
+
+    # --- BOTÓN CENTRADO ---
+    _, col_btn, _ = st.columns([0.2, 0.6, 0.2])
+    with col_btn:
         if st.button("🇮🇹 INICIAR VIAJE", key="main_start", type="primary"):
             st.session_state.viaje_iniciado = True
             st.rerun()

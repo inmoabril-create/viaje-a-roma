@@ -85,12 +85,12 @@ if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
 # ==========================================
-# 🎵 REPRODUCTOR DE MÚSICA (FIJO SIEMPRE)
+# 🎵 REPRODUCTOR DE MÚSICA (FIJO Y SIN SALTAR)
 # ==========================================
-# Lo ponemos fuera del if/else para que aparezca en todas las pantallas
+# Añadido playsinline=1 y modestbranding=1 para que no abra la app de YouTube
 st.markdown("""
     <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <iframe width="100%" height="100" src="https://www.youtube.com/embed/ChygZLpJDNE?start=940" title="Himno de la Alegría" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="100" src="https://www.youtube.com/embed/ChygZLpJDNE?start=940&playsinline=1&modestbranding=1&rel=0" title="Himno de la Alegría" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 """, unsafe_allow_html=True)
 
@@ -494,55 +494,4 @@ else:
             **ROMA IMPERIAL AL ATARDECER**
             
             * **Coliseo**: El mayor anfiteatro del mundo romano. Gladiadores.
-            * **El Mirador**: Subid a la Plaza del Campidoglio y asomaos por detrás para ver el Foro Romano.
-            """
-            abrir_ventana("Paseo Imperial", info_imp, img1="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Colosseum_at_night_2015.jpg/800px-Colosseum_at_night_2015.jpg")
-
-    # 6. Cena Despedida
-    c1, c2 = st.columns([0.55, 0.45])
-    with c1: st.markdown('<div class="activity-time">21:00 | 🍝 Cena Final</div>', unsafe_allow_html=True)
-    with c2:
-        if st.button("🍷 Ver Opciones", key="vec_mie"):
-            info_vec = """
-            **CENA DE DESPEDIDA:**
-            
-            1. **Trattoria Vecchia Roma**
-               - *Plato Estrella*: Amatriciana Flambé en rueda de queso.
-               - 📞 +39 06 446 7373
-               - 🌐 [Web Oficial](https://www.trattoriavecchiaroma.it/)
-               
-            2. **Trattoria Monti** (Via di S. Vito, 13)
-               - Cocina elegante y familiar. Cerca del hotel.
-               - 🌐 [TripAdvisor](https://www.tripadvisor.es/Restaurant_Review-g187791-d793216-Reviews-Trattoria_Monti-Rome_Lazio.html)
-            """
-            abrir_ventana("Cena de Despedida", info_vec)
-
-
-    # ------------------------------------------
-    # JUEVES 5: VUELTA A CASA
-    # ------------------------------------------
-    st.markdown('<div class="highlight-day"><h1>📆 JUEVES 5: Fin del Viaje</h1></div>', unsafe_allow_html=True)
-
-    c1, c2 = st.columns([0.55, 0.45])
-    with c1: st.markdown('<div class="activity-time">03:00 | ⏰ Arriba</div>', unsafe_allow_html=True)
-    with c2:
-        if st.button("🛫 Logística", key="jue_fin"):
-            info_fin = """
-            **OPERACIÓN RETORNO (VUELO 06:40)**
-            
-            * **03:00**: Despertador. Ducha rápida y check-out.
-            * **03:45**: Estar en la calle esperando transporte.
-            
-            **OPCIONES AL AEROPUERTO:**
-            1. **Taxi (Recomendado)**: 50€ tarifa fija. Pedidlo en recepción la tarde anterior. Salida 04:00.
-            2. **Bus TAM**: Salida 03:45 desde Via Giolitti 34 (Termini). 7€.
-            """
-            abrir_ventana("Vuelta a Casa", info_fin)
-
-    # BOTÓN FINAL
-    st.write("---")
-    st.markdown("<div style='text-align: center; margin-bottom: 20px;'>", unsafe_allow_html=True)
-    if st.button("🔙 VOLVER A PORTADA", key="btn_volver"):
-        st.session_state.viaje_iniciado = False
-        st.rerun()
-    st.markdown("</div>", unsafe_allow_html=True)
+            * **El Mirador**: Subid a la Plaza del Campidoglio y asomaos por detrás

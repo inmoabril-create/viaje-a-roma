@@ -94,14 +94,15 @@ if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
 # ==========================================
-# 1. PANTALLA DE BIENVENIDA (CON MÚSICA)
+# 1. PANTALLA DE BIENVENIDA (CON MÚSICA CORREGIDA)
 # ==========================================
 if not st.session_state.viaje_iniciado:
     
-    # --- REPRODUCTOR DE MÚSICA (Jimmy Fontana - Il Mondo) ---
+    # --- REPRODUCTOR DE MÚSICA (YouTube - Il Mondo) ---
+    # Usamos YouTube porque es más fiable que Spotify sin cuenta
     st.markdown("""
-        <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 15px;">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lX0zMfbB4X43wA4yQ6Q4c?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 15px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/CirEwavXen4?si=StartAudio" title="Il Mondo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     """, unsafe_allow_html=True)
 
@@ -128,10 +129,9 @@ if not st.session_state.viaje_iniciado:
     st.write("") 
     st.write("") 
 
-    # --- BOTÓN CENTRADO (VERSIÓN SEGURA) ---
+    # --- BOTÓN CENTRADO ---
     _, col_btn, _ = st.columns([0.2, 0.6, 0.2])
     with col_btn:
-        # Usamos el botón nativo 'primary' que se ve verde y grande por el CSS que pusimos antes
         if st.button("🇮🇹 INICIAR VIAJE", key="main_start", type="primary"):
             st.session_state.viaje_iniciado = True
             st.rerun()

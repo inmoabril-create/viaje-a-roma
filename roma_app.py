@@ -85,12 +85,19 @@ if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
 # ==========================================
-# 🎵 REPRODUCTOR DE MÚSICA (FIJO Y SIN SALTAR)
+# 🎵 REPRODUCTOR "CANDADO" (NO ABRE APP)
 # ==========================================
-# Añadido playsinline=1 y modestbranding=1 para que no abra la app de YouTube
+# El atributo 'sandbox' impide que el vídeo abra ventanas nuevas.
+# Usamos 'youtube-nocookie' para evitar saltos a la App.
 st.markdown("""
     <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 20px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-        <iframe width="100%" height="100" src="https://www.youtube.com/embed/ChygZLpJDNE?start=940&playsinline=1&modestbranding=1&rel=0" title="Himno de la Alegría" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="100%" height="100" 
+        src="https://www.youtube-nocookie.com/embed/ChygZLpJDNE?start=940&playsinline=1&modestbranding=1&rel=0&controls=1" 
+        title="Himno de la Alegría" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        sandbox="allow-scripts allow-same-origin allow-presentation"
+        allowfullscreen></iframe>
     </div>
 """, unsafe_allow_html=True)
 

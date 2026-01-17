@@ -94,12 +94,20 @@ if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
 # ==========================================
-# 1. PANTALLA DE BIENVENIDA
+# 1. PANTALLA DE BIENVENIDA (CON MÚSICA)
 # ==========================================
 if not st.session_state.viaje_iniciado:
-    # Usamos triple comilla normal para evitar errores de sintaxis
+    
+    # --- REPRODUCTOR DE MÚSICA (Jimmy Fontana - Il Mondo) ---
     st.markdown("""
-        <div style="text-align: center; padding: 40px 20px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 20px; max-width: 650px; margin-left: auto; margin-right: auto;">
+        <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 15px;">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6lX0zMfbB4X43wA4yQ6Q4c?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # --- CUADRO DE TEXTO Y DEDICATORIA ---
+    st.markdown("""
+        <div style="text-align: center; padding: 40px 20px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 10px; max-width: 650px; margin-left: auto; margin-right: auto;">
             <h1 style="color: #1E3A5F; font-family: 'Georgia', serif; font-size: 42px; font-weight: 700; margin-bottom: 15px;">Escapada a Roma</h1>
             <p style="color: #ce1126; font-size: 26px; font-weight: 700; margin-bottom: 5px;">Febrero de 2026</p>
             <p style="color: #1E3A5F; font-size: 24px; font-weight: 600; margin-bottom: 30px;">Paco & Mari Trini</p>
@@ -118,13 +126,15 @@ if not st.session_state.viaje_iniciado:
     """, unsafe_allow_html=True)
     
     st.write("") 
-    _, col_btn, _ = st.columns([0.5, 1, 0.5])
+    st.write("") 
+
+    # --- BOTÓN CENTRADO (VERSIÓN SEGURA) ---
+    _, col_btn, _ = st.columns([0.2, 0.6, 0.2])
     with col_btn:
-        st.markdown('<div class="btn-inicio">', unsafe_allow_html=True)
-        if st.button("🇮🇹 INICIAR VIAJE", key="main_start"):
+        # Usamos el botón nativo 'primary' que se ve verde y grande por el CSS que pusimos antes
+        if st.button("🇮🇹 INICIAR VIAJE", key="main_start", type="primary"):
             st.session_state.viaje_iniciado = True
             st.rerun()
-        st.markdown('</div>', unsafe_allow_html=True)
 
 # ==========================================
 # 2. ITINERARIO COMPLETO

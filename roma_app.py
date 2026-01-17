@@ -4,30 +4,25 @@ from datetime import datetime
 # --- CONFIGURACIÓN DE PÁGINA ---
 st.set_page_config(page_title="Roma 2026", page_icon="🇮🇹", layout="centered")
 
-# --- ESTILOS CSS (SOLUCIÓN MODO OSCURO Y DISEÑO) ---
+# --- ESTILOS CSS ---
 st.markdown("""
     <style>
-    /* 1. Fondo general */
+    /* Fondo color crema suave */
     .stApp { background-color: #Fdfcf0; }
     
-    /* 2. FORZAR VENTANAS EN BLANCO (Crucial para leer bien) */
+    /* Ventanas emergentes en blanco */
     div[role="dialog"] {
         background-color: #ffffff !important;
         color: #000000 !important;
     }
-    div[role="dialog"] h2 {
-        color: #1E3A5F !important;
-    }
+    div[role="dialog"] h2 { color: #1E3A5F !important; }
     div[role="dialog"] p, div[role="dialog"] li {
         color: #333333 !important;
         font-size: 18px !important;
     }
-    div[role="dialog"] a {
-        color: #0056b3 !important;
-        font-weight: bold;
-    }
+    div[role="dialog"] a { color: #0056b3 !important; font-weight: bold; }
 
-    /* 3. Encabezados de Día */
+    /* Tarjetas de Días */
     .highlight-day {
         background: linear-gradient(135deg, #1E3A5F 0%, #12263a 100%);
         color: white !important;
@@ -40,14 +35,14 @@ st.markdown("""
     }
     .highlight-day h1 { color: white !important; font-size: 26px !important; margin:0; }
 
-    /* 4. Textos de la lista principal */
+    /* Horas y Textos */
     .activity-time {
         font-weight: bold;
         color: #1E3A5F;
         font-size: 20px;
     }
 
-    /* 5. Botones */
+    /* Botones Estándar Mejorados */
     div.stButton > button {
         width: 100%;
         background-color: white !important;
@@ -63,20 +58,16 @@ st.markdown("""
         background-color: #1E3A5F !important;
         color: white !important;
     }
-
-    /* Botón INICIAR VIAJE (Verde y Grande) */
-    .btn-inicio button {
+    
+    /* Botón de Inicio Grande */
+    div.row-widget.stButton > button[kind="primary"] {
         background-color: #008C45 !important;
         color: white !important;
         border: none !important;
-        height: 65px !important;
         font-size: 24px !important;
+        padding: 15px !important;
+        height: auto !important;
         border-radius: 50px !important;
-        box-shadow: 0 5px 15px rgba(0,140,69,0.4);
-    }
-    .btn-inicio button:hover {
-        background-color: #006b35 !important;
-        transform: scale(1.05);
     }
     </style>
 """, unsafe_allow_html=True)
@@ -93,22 +84,29 @@ def abrir_ventana(titulo, texto_markdown, img1=None, pie1=None):
 if 'viaje_iniciado' not in st.session_state:
     st.session_state.viaje_iniciado = False
 
+
 # ==========================================
-# 1. PANTALLA DE BIENVENIDA (CON MÚSICA CORREGIDA)
+# 🎵 BANDA SONORA (EN BARRA LATERAL)
 # ==========================================
-if not st.session_state.viaje_iniciado:
-    
-    # --- REPRODUCTOR DE MÚSICA (YouTube - Il Mondo) ---
-    # Usamos YouTube porque es más fiable que Spotify sin cuenta
+# Al ponerlo en el sidebar, acompaña todo el viaje
+with st.sidebar:
+    st.header("🎵 Banda Sonora")
+    st.info("Dale al Play para ambientar el viaje.")
+    # Video de Beethoven - 9ª Sinfonía (4º Mov). Empieza en el minuto 11 (660 segundos)
     st.markdown("""
-        <div style="max-width: 650px; margin-left: auto; margin-right: auto; margin-bottom: 15px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <iframe width="100%" height="200" src="https://www.youtube.com/embed/CirEwavXen4?si=StartAudio" title="Il Mondo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div style="border-radius: 10px; overflow: hidden;">
+            <iframe width="100%" height="180" src="https://www.youtube.com/embed/Q0F5135z3wY?start=660" title="Beethoven 9th" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     """, unsafe_allow_html=True)
+    st.caption("Ludwig van Beethoven - 9ª Sinfonía (Oda a la Alegría)")
 
-    # --- CUADRO DE TEXTO Y DEDICATORIA ---
+
+# ==========================================
+# 1. PANTALLA DE BIENVENIDA
+# ==========================================
+if not st.session_state.viaje_iniciado:
     st.markdown("""
-        <div style="text-align: center; padding: 40px 20px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 10px; max-width: 650px; margin-left: auto; margin-right: auto;">
+        <div style="text-align: center; padding: 40px 20px; background-color: white; border: 8px double #1E3A5F; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-top: 20px; max-width: 650px; margin-left: auto; margin-right: auto;">
             <h1 style="color: #1E3A5F; font-family: 'Georgia', serif; font-size: 42px; font-weight: 700; margin-bottom: 15px;">Escapada a Roma</h1>
             <p style="color: #ce1126; font-size: 26px; font-weight: 700; margin-bottom: 5px;">Febrero de 2026</p>
             <p style="color: #1E3A5F; font-size: 24px; font-weight: 600; margin-bottom: 30px;">Paco & Mari Trini</p>
@@ -126,12 +124,12 @@ if not st.session_state.viaje_iniciado:
         </div>
     """, unsafe_allow_html=True)
     
-    st.write("") 
-    st.write("") 
-
-    # --- BOTÓN CENTRADO ---
-    _, col_btn, _ = st.columns([0.2, 0.6, 0.2])
-    with col_btn:
+    st.write("")
+    st.write("")
+    
+    # Botón de Inicio
+    col1, col2, col3 = st.columns([0.1, 0.8, 0.1])
+    with col2:
         if st.button("🇮🇹 INICIAR VIAJE", key="main_start", type="primary"):
             st.session_state.viaje_iniciado = True
             st.rerun()
@@ -144,7 +142,7 @@ else:
     st.write("### Paco & Mari Trini")
 
     # ------------------------------------------
-    # DOMINGO 1: LLEGADA
+    # DOMINGO 1
     # ------------------------------------------
     st.markdown('<div class="highlight-day"><h1>📆 DOMINGO 1: Benvenuti</h1></div>', unsafe_allow_html=True)
     
@@ -163,7 +161,7 @@ else:
             
             2. **🚖 Taxi Oficial (Blanco)**:
                - Precio: **50€** (Tarifa fija cerrada).
-               - Tiempo: 40-50 min (según tráfico).
+               - Tiempo: 40-50 min.
             
             3. **🚌 Bus (Terravision/TAM)**:
                - Precio: ~7€. Más lento (1h).
@@ -238,7 +236,7 @@ else:
 
 
     # ------------------------------------------
-    # LUNES 2: EL VATICANO
+    # LUNES 2
     # ------------------------------------------
     st.markdown('<div class="highlight-day"><h1>📆 LUNES 2: El Vaticano</h1></div>', unsafe_allow_html=True)
 
@@ -252,7 +250,7 @@ else:
             
             * **Metro Línea A (Roja)**: Desde Termini dirección Battistini.
             * **Parada**: Bajad en **Ottaviano**.
-            * **Pago**: Usad el móvil (NFC) en el torno (Tap & Go).
+            * **Pago**: Usad el móvil (NFC) directamente en el torno (Tap & Go).
             """
             abrir_ventana("Logística Vaticano", info_tr)
 
@@ -329,7 +327,7 @@ else:
 
 
     # ------------------------------------------
-    # MARTES 3: ROMA BARROCA
+    # MARTES 3
     # ------------------------------------------
     st.markdown('<div class="highlight-day"><h1>📆 MARTES 3: Roma Barroca</h1></div>', unsafe_allow_html=True)
 
@@ -419,7 +417,7 @@ else:
 
 
     # ------------------------------------------
-    # MIÉRCOLES 4: ARTE E IMPERIO
+    # MIÉRCOLES 4
     # ------------------------------------------
     st.markdown('<div class="highlight-day"><h1>📆 MIÉRCOLES 4: Arte e Imperio</h1></div>', unsafe_allow_html=True)
 
